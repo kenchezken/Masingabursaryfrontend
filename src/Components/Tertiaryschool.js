@@ -99,9 +99,9 @@ const Tertiary = ()=>{
          <Button
         onClick={openManualForm}
         style={{
-          position: 'fixed',
-          left: '20px',
-          top: '50%',
+          marginLeft: '20px',
+          marginTop: '50px' ,
+          width: '30%',
           transform: 'translateY(-50%)',
           backgroundColor: '#4CAF50',
           color: 'white',
@@ -117,11 +117,11 @@ const Tertiary = ()=>{
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
         }}
       >
-       Click to Download BursaryForm
+       Download BursaryForm
       </Button>
      <Form
     style={{
-      width: '50%' ,
+      width: '80%' ,
       marginLeft: 'auto',
       marginRight: 'auto' ,
       marginTop: '50px',
@@ -192,7 +192,7 @@ const Tertiary = ()=>{
   {/* residence details */}
   <Form
     style={{
-      width: '50%' ,
+      width: '80%' ,
       marginLeft: 'auto',
       marginRight: 'auto' ,
       marginTop: '50px',
@@ -242,7 +242,7 @@ const Tertiary = ()=>{
   {/* Institution */}
   <Form
     style={{
-      width: '50%' ,
+      width: '80%' ,
       marginLeft: 'auto',
       marginRight: 'auto' ,
       marginTop: '50px',
@@ -333,7 +333,7 @@ const Tertiary = ()=>{
   </Form>
   <Form
     style={{
-      width: '50%' ,
+      width: '80%' ,
       marginLeft: 'auto',
       marginRight: 'auto' ,
       marginBottom: '30px' ,
