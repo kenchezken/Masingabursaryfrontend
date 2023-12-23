@@ -20,7 +20,7 @@ function StudentLogin({setRole , setnationalid}) {
     
     // TODO: Submit form data to backend
    
-    fetch("http://127.0.0.1:5000/bursarymanagement/login", {
+    fetch("https://backendmasingaflassk.onrender.com/bursarymanagement/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

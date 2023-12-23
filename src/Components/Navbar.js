@@ -1,14 +1,18 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import firstImage from '../images/pic1.jpg';
 import { NavLink } from 'react-router-dom';
-
 import './Navbar.css'; // Import a CSS file for custom styles
 
 const NavigationBar = () => {
  
   return (
+    <>
     <Navbar className="navbar-sticky" bg="light" data-bs-theme="light" style={{
       marginLeft: '0px'
      
@@ -57,7 +61,10 @@ const NavigationBar = () => {
           </Nav.Link>
         </Nav>
       </Container>
-    </Navbar>
+    </Navbar>  
+    </>
+    
+  
   );
 };
 export default NavigationBar

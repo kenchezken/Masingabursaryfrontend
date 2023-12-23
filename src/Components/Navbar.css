@@ -1,28 +1,15 @@
-.my-custom-margin{
-    margin-left: 300px;
-}
-li{
-    font-size: larger;
-}
-.nav-link {
-    text-decoration: none; /* Remove text decoration */
-    font-weight: bold; /* Make text bolder */
-    font-size: 18px; /* Increase font size */
-    color: #333; /* Optional: Set the color */
-  }
-  
-  .nav-link:hover {
-    color: #555; /* Optional: Change color on hover */
-  }
 
-  .navbar-brand {
-    margin-left: 0;
-    font-size: 24px; /* Increase font size */
-    font-weight: 700; /* Increase font weight */
+
+  .navbar {
+    /* background-color: white; Set the background color to white */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+    margin: 4px;
+  }
+  .nav-item a {
+    color: black;
+    padding: 10px;
+    opacity: 0.9;
+    width: auto;
+    margin: 5px;
   }
   
-  .navbar-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Adjust the z-index as needed */
-  }
