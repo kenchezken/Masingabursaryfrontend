@@ -18,7 +18,7 @@ function AdminLogin({setnationalid}) {
     
     // TODO: Submit form data to backend
    
-    fetch("https://backendmasingaflassk.onrender.com/loginadmin", {
+    fetch("https://backendmasingaflassk.onrender.com/bursarymanagement/loginadmin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

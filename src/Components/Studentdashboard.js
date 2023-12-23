@@ -10,7 +10,7 @@ function Studentdashboard({nationalid}){
     useEffect(() => {
         // Fetch data only if nationalid is available
         if (nationalid) {
-          fetch(`https://backendmasingaflassk.onrender.com/mydetails/${nationalid}`)
+          fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/mydetails/${nationalid}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');

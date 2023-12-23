@@ -22,7 +22,7 @@ function Admindashboard({nationalid}){
     useEffect(() => {
         // Fetch data only if nationalid is available
       
-          fetch(`https://backendmasingaflassk.onrender.com/allapplication`)
+          fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@ function Admindashboard({nationalid}){
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch(`https://backendmasingaflassk.onrender.com//approveBursaryapplication/${item.id}`, {
+          const response = await fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/approveBursaryapplication/${item.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
