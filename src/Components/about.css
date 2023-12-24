@@ -1,0 +1,23 @@
+/* about.css */
+
+/* Apply margin to the left and right */
+.card {
+  margin: 20px 20px;
+}
+
+/* Define a simple animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to the card */
+.card {
+  animation: fadeIn 0.5s ease-in-out;
+}

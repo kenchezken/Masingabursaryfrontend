@@ -9,65 +9,59 @@ import bursaryform from '../images/bursaryform.pdf'
 
 
 const Tertiary = ()=>{
-  const[fullname , setfullname] = useState('')
-  const[gender , setgender] = useState('')
+  const[Firstname , setFirstname] = useState('')
+  const[Middlename , setMiddlename] = useState('')
+  const[Lastname , setLastname] = useState('')
+  const[Gender , setGender] = useState('')
 
-  const[nationid , setnationid] = useState('')
-  const[phonenumber , setphonenumber] = useState('')
-  const[guardiansno , setguardiansno] = useState('')
-  const[mothersid , setmothersid] = useState('')
-  const[disability ,setdisability] = useState('')
-  const[ward , setward] = useState('')
-  const[levelofstudy , setlevelofstudy] = useState('')
-  const[location , setlocation] = useState('')
-  const[sublocation , setsublocaation] = useState('')
-  const[village ,setvillage] = useState('')
-  const[institution , setinstitution] = useState('')
-  const[admno , setadmno] = useState('')
-  const[modeofstudy , setmodeofstudy] = useState('')
-  const[yearofstudy , setyearofstudy] = useState('')
-  const[semester , setsemester] = useState('')
-  const[coarseduration , setcoarseduration] = useState('')
-  const[family , setfamily] = useState('')
-  const[fathersincome , setfathersincome] = useState('')
-  const[mothersincome , setmothersincome] = useState('')
-  const[approvalstatus , setapprovalstatus] = useState('Notapproved')
-   
+  const[Nationalid , setNationalid] = useState('')
+  const[Phonenumber , setPhonenumber] = useState('')
+  const[GuardiansNo , setGuardiansNo] = useState('')
+  const[Guardiansid , setGuardiansid] = useState('')
+  const[Disability ,setDisability] = useState('')
+  const[Ward , setWard] = useState('')
+  const[Levelofstudy , setLevelofstudy] = useState('')
+  const[Location , setLocation] = useState('')
+  const[Sublocation , setsublocaation] = useState('')
+  const[Village ,setVillage] = useState('') 
+  const[Chiefname , setChiefname] = useState('')
+  const[Chiefphonenumber , setChiefphonenumber] = useState('')
+  const [Assistantchiefname , setAssistantchiefname] = useState('')
+  const[Institution , setInstitution] = useState('')
+  const[Amountexpecting , setAmountexpecting] = useState('')
+  const[Admno , setAdmno] = useState('')
+  const[Modeofstudy , setModeofstudy] = useState('')
+  const[Yearofstudy , setYearofstudy] = useState('')
+  const[Semester , setSemester] = useState('')
+  const[Coarseduration , setCoarseduration] = useState('')
+  const[Family , setFamily] = useState('')
+  const[Fathersincome , setFathersincome] = useState('')
+  const[Mothersincome , setMothersincome] = useState('')
+  const[Approvalstatus , setApprovalstatus] = useState('Notapproved')
+  
+  const [loading, setLoading] = useState(false)
   const MySwal = withReactContent(Swal)
 
 
 
   function submitform(e) {
     e.preventDefault();
-  
+    setLoading(true);
     // Check if any field is empty
-    const fields = [
-      fullname, gender, nationid, phonenumber, guardiansno, mothersid, disability,
-      ward, levelofstudy, location, sublocation, village, institution, admno,
-      modeofstudy, yearofstudy, semester, coarseduration, family, fathersincome,
-      mothersincome, approvalstatus
-    ];
-  
-    if (fields.some(field => field.trim() === '')) {
-      Swal.fire({
-        title: "Empty Field",
-        text: "Please fill in all fields",
-        icon: "error"
-      });
-      return;
-    }
+    
   
     // If all fields are filled, proceed with form submission
+    //https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication
     fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        fullname, gender, phonenumber, nationid, guardiansno, mothersid, disability,
-        levelofstudy, ward, location, sublocation, village, institution, admno,
-        modeofstudy, yearofstudy, semester, coarseduration, family, fathersincome,
-        mothersincome, approvalstatus
+        Firstname , Middlename ,Lastname, Gender, Phonenumber, Nationalid, GuardiansNo, Guardiansid, Disability,
+         Levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , Assistantchiefname ,Institution, Admno,Amountexpecting ,
+        Modeofstudy, Yearofstudy, Semester, Coarseduration, Family, Fathersincome,
+        Mothersincome, Approvalstatus
       })
     })
       .then(response => response.json())
@@ -77,6 +71,7 @@ const Tertiary = ()=>{
           text: data.message,
           icon: "success"
         });
+        setLoading(false);
         // Reset the form if needed
         // resetForm();
       })
@@ -141,16 +136,31 @@ const Tertiary = ()=>{
     </div>
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Fullname</Form.Label>
-      <Form.Control type="text" placeholder="Fullname" onChange={(e) =>{
-           setfullname(e.target.value)
-           console.log(fullname);
+      <Form.Label>Firstname</Form.Label>
+      <Form.Control type="text" placeholder="Firstname" onChange={(e) =>{
+           setFirstname(e.target.value)
+           console.log(Firstname);
+      }}/>
+    </Form.Group>
+
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Middlename</Form.Label>
+      <Form.Control type="text" placeholder="Middlename" onChange={(e) =>{
+           setMiddlename(e.target.value)
+           console.log(Middlename);
+      }}/>
+    </Form.Group>
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Lastname</Form.Label>
+      <Form.Control type="text" placeholder="Lastname" onChange={(e) =>{
+           setLastname(e.target.value)
+           console.log(Lastname);
       }}/>
     </Form.Group>
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Gender</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setgender(e.target.options[e.target.selectedIndex].text)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setGender(e.target.options[e.target.selectedIndex].text)}>
             <option selected>Open this select menu</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
@@ -159,8 +169,8 @@ const Tertiary = ()=>{
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
-        <Form.Label>Persons with disability</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setdisability(e.target.value)}>
+        <Form.Label>Persons with Disability</Form.Label>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setDisability(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -169,22 +179,22 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>National ID</Form.Label>
-      <Form.Control type="text" placeholder="Id.no" onChange={(e) => setnationid(e.target.value)} />
+      <Form.Control type="text" placeholder="Id.no" onChange={(e) => setNationalid(e.target.value)} />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Your phoneNumber</Form.Label>
-      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setphonenumber(e.target.value)} />
+      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setPhonenumber(e.target.value)} />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Guardians Mobile No.</Form.Label>
-      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setguardiansno(e.target.value)} />
+      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setGuardiansNo(e.target.value)} />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Guardians/Parents id.</Form.Label>
-      <Form.Control type="text" placeholder="ID.No" onChange={(e) => setmothersid(e.target.value)}/>
+      <Form.Control type="text" placeholder="ID.No" onChange={(e) => setGuardiansid(e.target.value)}/>
     </Form.Group>
 
 
@@ -213,7 +223,7 @@ const Tertiary = ()=>{
     
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Ward</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setward(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setWard(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="MASINGACENTRAL">Masinga Central</option>
             <option value="EKALAKALAIKATINI">Ekalakala/Ikatini ward</option>
@@ -225,7 +235,7 @@ const Tertiary = ()=>{
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Location</Form.Label>
-      <Form.Control type="text" placeholder="Location" onChange={(e) => setlocation(e.target.value)}/>
+      <Form.Control type="text" placeholder="Location" onChange={(e) => setLocation(e.target.value)}/>
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
@@ -235,7 +245,30 @@ const Tertiary = ()=>{
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Village</Form.Label>
-      <Form.Control type="text" placeholder="Village" onChange={(e) => setvillage(e.target.value)}/>
+      <Form.Control type="text" placeholder="Village" onChange={(e) => setVillage(e.target.value)}/>
+    </Form.Group>
+
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Chiefsname</Form.Label>
+      <Form.Control type="text" placeholder="fullname" onChange={(e) =>{
+           setChiefname(e.target.value)
+          
+      }}/>
+
+    </Form.Group>
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Chiefsno</Form.Label>
+      <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
+           setChiefphonenumber(e.target.value)
+         
+      }}/>
+    </Form.Group>
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Assistantchief</Form.Label>
+      <Form.Control type="text" placeholder="Assitantchief" onChange={(e) =>{
+           setAssistantchiefname(e.target.value)
+        
+      }}/>
     </Form.Group>
  
   </Form>
@@ -262,37 +295,47 @@ const Tertiary = ()=>{
     </div>  
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Name of Institution</Form.Label>
-      <Form.Control type="text" placeholder="Institution" onChange={(e) => setinstitution(e.target.value)}/>
+      <Form.Control type="text" placeholder="Institution" onChange={(e) => setInstitution(e.target.value)}/>
     </Form.Group>
-  
+
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Amount expecting</Form.Label>
+      <Form.Control type="text" placeholder="Amountexpecting" onChange={(e) =>{
+           setAmountexpecting(e.target.value)
+      }}/>
+
+    </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>AdmissionNo/RegNo</Form.Label>
-      <Form.Control type="text" placeholder="Admission No" onChange={(e) => setadmno(e.target.value)}/>
+      <Form.Control type="text" placeholder="Admission No" onChange={(e) => setAdmno(e.target.value)}/>
     </Form.Group>
+
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Level of Study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setlevelofstudy(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setLevelofstudy(e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="Postgraduate">Postgraduate</option>
-            <option value="underground">Undergraduate</option>
-            <option value="diploma">Diploma</option>
-            <option value="certificate">Certificate</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Diploma">Diploma</option>
+            <option value="Certificate">Certificate</option>
             </select>
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Mode of study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setmodeofstudy(e.target.value)}>
-            <option selected>Fulltime</option>
-            <option value="online">Online</option>
-            <option value="partime">Partime</option>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setModeofstudy(e.target.value)} >
+            <option selected>Open this select menu</option>
+            <option value="Fulltime">Postgraduate</option>
+            <option value="Online">Undergraduate</option>
+            <option value="Partime">Diploma</option>
             </select>
         </Form.Group>
 
+
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Year of study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setyearofstudy(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setYearofstudy(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value=" Year1">1</option>
             <option value="Year2">2</option>
@@ -306,7 +349,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Semester</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setsemester(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setSemester(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="1st semester">1</option>
             <option value="2nd semester">2</option>
@@ -316,7 +359,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Coarse Duration</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setcoarseduration(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setCoarseduration(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -355,7 +398,7 @@ const Tertiary = ()=>{
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Family</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setfamily(e.target.value)} >
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setFamily(e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="totalorphan">Total orphan</option>
             <option value="partialorphan">Partial orphan</option>
@@ -365,7 +408,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Father's income</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setfathersincome(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setFathersincome(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="Earns more than kshs.50,000/=">Earns more than kshs.50,000/=</option>
             <option value="Earns less than kshs. 50,000/=">Earns less than kshs. 50,000/=</option>
@@ -375,7 +418,7 @@ const Tertiary = ()=>{
         </Form.Group>
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Mothers income</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setmothersincome(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setMothersincome(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="Earns more than kshs.50,000/=">Earns more than kshs.50,000/=</option>
             <option value="Earns less than kshs. 50,000/=">Earns less than kshs. 50,000/=</option>
@@ -387,7 +430,7 @@ const Tertiary = ()=>{
   
         <Form.Group className="mb-3">
           <Button type="submit" style={{ background: 'green',borderColor:'green' , width: '50%', margin: 'auto' }}onClick={submitform} >
-            SubmitForm
+          {loading ? 'Submitting...' : 'SubmitForm'}
           </Button>
         </Form.Group>
   </Form>

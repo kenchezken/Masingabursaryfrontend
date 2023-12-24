@@ -1,0 +1,39 @@
+/* CountdownTimer.css */
+
+.countdown-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .countdown-heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: rgb(14, 45, 73);
+  }
+ 
+  .countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .countdown-item {
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #154c79;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .countdown-item span:first-child {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .countdown-item span:last-child {
+    font-size: 1rem;
+    color: red;
+  }
