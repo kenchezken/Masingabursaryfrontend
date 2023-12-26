@@ -78,7 +78,7 @@ In January 2013, the CDF Act 2003 was repealed and replaced with the Act of 2013
               <td>Wiper</td>
             </tr> 
             <tr>
-              <td>2017</td>
+              <td>2022</td>
               <td>Joshua Mbithi Mwalyo</td>
               <td>Independent</td>
             </tr> 
