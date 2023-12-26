@@ -12,6 +12,13 @@
     width: auto;
     margin: 5px;
   } */
+  .nav-logo img {
+   /* Adjust the maximum width */
+   max-width: 50px;
+    height: auto;
+    /* Add any necessary styling for the logo */
+  }
+  
   .navbar {
     background-color: #154c79;
     height: 80px;

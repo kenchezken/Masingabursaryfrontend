@@ -48,11 +48,47 @@ const Tertiary = ()=>{
     e.preventDefault();
     setLoading(true);
     // Check if any field is empty
+    if (
+      Firstname.trim() === '' ||
+      Middlename.trim() === '' ||
+      Lastname.trim() === '' ||
+      Gender.trim() === '' ||
+      Nationalid.trim() === '' ||
+      Phonenumber.trim() === '' ||
+      GuardiansNo.trim() === '' ||
+      Guardiansid.trim() === '' ||
+      Disability.trim() === '' ||
+      Ward.trim() === '' ||
+      Levelofstudy.trim() === '' ||
+      Location.trim() === '' ||
+      Sublocation.trim() === '' ||
+      Village.trim() === '' ||
+      Chiefname.trim() === '' ||
+      Chiefphonenumber.trim() === '' ||
+      Assistantchiefname.trim() === '' ||
+      Institution.trim() === '' ||
+      Amountexpecting.trim() === '' ||
+      Admno.trim() === '' ||
+      Modeofstudy.trim() === '' ||
+      Yearofstudy.trim() === '' ||
+      Semester.trim() === '' ||
+      Coarseduration.trim() === '' ||
+      Family.trim() === '' ||
+      Fathersincome.trim() === '' ||
+      Mothersincome.trim() === ''
+  ) {
+      // Handle empty fields, maybe show an error message or prevent form submission
+      Swal.fire({
+        title: "Failed",
+        text: "Submission failed , kindly fill all the fields",
+        icon: "error",
+      });;
+      return;
+  }
+
     
   
-    // If all fields are filled, proceed with form submission
-    //https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication
-    fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication', {
+    fetch('http://127.0.0.1:5000/bursarymanagement/tertiaryapplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -64,7 +100,13 @@ const Tertiary = ()=>{
         Mothersincome, Approvalstatus
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      
       .then(data => {
         Swal.fire({
           title: "Good job!",
@@ -77,7 +119,11 @@ const Tertiary = ()=>{
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('There was an error submitting the form.');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to create an application',
+          icon: 'error',
+        });
       });
   }
   const openManualForm = () => {
@@ -293,10 +339,64 @@ const Tertiary = ()=>{
       color:'white'
     }}>3.Institution</h2>
     </div>  
+
+
+
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
-      <Form.Label>Name of Institution</Form.Label>
-      <Form.Control type="text" placeholder="Institution" onChange={(e) => setInstitution(e.target.value)}/>
-    </Form.Group>
+    <Form.Label>University</Form.Label>
+    <select className="custom-select" style={{ width: '100%' }}>
+        <option defaultValue>Select a university</option>
+        <option value="ADVENTISTUNIVERSITYOFAFRICA">Adventist University of Africa</option>
+        <option value="AFRICAINTERNATIONALUNIVERSITY">Africa International University</option>
+        <option value="AFRICANAZARENEUNIVERSITY">Africa Nazarene University</option>
+        <option value="AMREFINTERNATIONALUNIVERSITY">Amref International University</option>
+        <option value="CHUKAUNIVERSITY">Chuka University</option>
+        <option value="DAYSTARUNIVERSITY">Daystar University</option>
+        <option value="GRETSAUNIVERSITY">Gretsa University</option>
+        <option value="DEDANKIMATHIUNIVERSITYOFTECHNOLOGY">Dedan Kimathu University</option>
+        <option value="ISLAMICUNIVERSITYOFKENYA">Islamic University</option>
+        <option value="DAYSTARUNIVERSITY">Daystar University</option>
+        <option value="KABARAKUNIVERSITY">Kabarak University</option>
+        <option value="KARATINAUNIVERSITY">KARATINA University</option>
+        <option value="KENYAHIGHLANDUNIVERSITY">Kenya Highland University</option>
+        <option value="KCAUNIVERSITY">KCA University</option>
+        <option value="KIBABIIUNIVERSITY">KIBABII University</option>
+        <option value="KIRINYAGA UNIVERSITY">Zetech University</option>
+        <option value="KIRIRIWOMENS">Kiriri Womens University</option>
+        <option value="KISIIUNIVERSITY">Kisii University</option>
+        <option value="LUKENYAUNIVERSITY">Lukenya University</option>
+        <option value="MACHAKOSUNIVERSITY">Machakos University</option>
+        <option value="JOMO KENYATTA UNIVERSITY OF AGRICULTURE AND TECHNOLOGY">Jomo Kenyata University of Agriculture and Technology University</option>
+        <option value="MASINDEMULIROUNIVERSITY">MasindeMuliro University</option>
+        <option value="PWANIUNIVERSITY">Pwani University</option>
+        <option value="RIARAUNIVERSITY">Riara University</option>
+        <option value="RONGOUNIVERSITY">Rongo University</option>
+        <option value="STPAULSUNIVERSITY">St Pauls University</option>
+        <option value="STRATHMOREUNIVERSITY">Strathmore University</option>
+        <option value="MERUUNIVERSITYOFSCIENCEANDTECHNOLOGY">Meru University</option>
+        <option value="EASTAFRICANUNIVERSITY">East Africa University</option>
+        <option value="UZIMAUNIVERSITY">Uzima University</option>
+        <option value="ZETECHUNIVERSITY">Zetech University</option>
+        <option value="UMMAUNIVERSITY">Umma University</option>
+         
+    </select>
+</Form.Group>
+
+
+<Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
+    <Form.Label>
+        Other Institution <span style={{ color: 'red' }}>*</span>
+    </Form.Label>
+    <Form.Text className="text-muted">
+        Please provide the full name of the institution without abbreviation.
+    </Form.Text>
+    <Form.Control
+        type="text"
+        placeholder="Institution"
+        onChange={(e) => setInstitution(e.target.value)}
+    />
+   
+</Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Amount expecting</Form.Label>

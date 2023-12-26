@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import logo from '../images/logo.png'
 import './Navbar.css'; // Import a CSS file for custom styles
 
 const NavigationBar = () => {
@@ -12,9 +13,16 @@ const NavigationBar = () => {
   return (
     <>
       <nav className="navbar">
-        <div className="nav-container">
+        <div className="nav-container"
+        >
+           <NavLink exact to="/" className="nav-logo">
+      <img src={logo} alt="Masinga Constituency" />
+    </NavLink>
           <NavLink exact to="/" className="nav-logo">
-            <span>MASINGA CONSTITUENCY</span>
+            <span style={{
+              fontSize: '25px',
+              fontWeight: 'bolder'
+            }}>MASINGA CONSTITUENCY</span>
             {/* <i className="fas fa-code"></i> */}
             
           </NavLink>
@@ -53,7 +61,7 @@ const NavigationBar = () => {
                 About
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink
                 exact
                 to="/Contactus"
@@ -63,7 +71,7 @@ const NavigationBar = () => {
               >
                 Contact us
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink
                 exact

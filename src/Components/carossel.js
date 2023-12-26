@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import React from 'react';
-import firstImage from '../images/pic1.jpg';
+import firstImage from '../images/pic6.jpg';
 import secondImage from '../images/pic4.jpg';
 import thirdImage from '../images/pic3.jpg';
 

@@ -13,17 +13,14 @@ const Footer = () => {
         <p id="courtesyof">Courtesy of Hon. Joshua Mbithi Mwalyo</p>
 
         <ul className="socials">
-          <li><a href="#"><FontAwesomeIcon icon={faFacebook} /></a></li>
-          <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
+          <li><a href="https://web.facebook.com/profile.php?id=100090714716151&sk=photos"><FontAwesomeIcon icon={faFacebook} /></a></li>
           <li><a href="#"><FontAwesomeIcon icon={faGooglePlus} /></a></li>
-          <li><a href="#"><FontAwesomeIcon icon={faYoutube} /></a></li>
-          <li><a href="#"><FontAwesomeIcon icon={faLinkedin} /></a></li>
         </ul>
       {/* <p id="copyright"> Copyright 2023 Kitui Central Constituency
       </p> */}
       </div>
       <div className="footer-bottom">
-      <p>Copyright &copy; 2021 <a href="#">Masinga Constituency</a></p>
+      <p>Copyright &copy; 2023 <a href="#">Masinga Constituency</a></p>
       </div>
              
     </footer>
