@@ -224,7 +224,7 @@ const Tertiary = ()=>{
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>National ID</Form.Label>
+      <Form.Label>National ID/Birth Certificate Number</Form.Label>
       <Form.Control type="text" placeholder="Id.no" onChange={(e) => setNationalid(e.target.value)} />
     </Form.Group>
 
@@ -234,7 +234,7 @@ const Tertiary = ()=>{
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Guardians Mobile No.</Form.Label>
+      <Form.Label>Guardians/Parents Mobile No.</Form.Label>
       <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setGuardiansNo(e.target.value)} />
     </Form.Group>
 
@@ -295,7 +295,7 @@ const Tertiary = ()=>{
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Chiefsname</Form.Label>
+      <Form.Label>Chief's Name</Form.Label>
       <Form.Control type="text" placeholder="fullname" onChange={(e) =>{
            setChiefname(e.target.value)
           
@@ -303,14 +303,14 @@ const Tertiary = ()=>{
 
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Chiefsno</Form.Label>
+      <Form.Label>Chiefs Phonenumber</Form.Label>
       <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
            setChiefphonenumber(e.target.value)
          
       }}/>
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Assistantchief</Form.Label>
+      <Form.Label>Assistant Chief Name</Form.Label>
       <Form.Control type="text" placeholder="Assitantchief" onChange={(e) =>{
            setAssistantchiefname(e.target.value)
         
@@ -399,8 +399,8 @@ const Tertiary = ()=>{
 </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Amount expecting</Form.Label>
-      <Form.Control type="text" placeholder="Amountexpecting" onChange={(e) =>{
+      <Form.Label>Amount Applied</Form.Label>
+      <Form.Control type="text" placeholder="Amount applied" onChange={(e) =>{
            setAmountexpecting(e.target.value)
       }}/>
 
@@ -426,9 +426,8 @@ const Tertiary = ()=>{
         <Form.Label>Mode of study</Form.Label>
             <select class="custom-select" style={{width: '100%'}} onChange={(e) => setModeofstudy(e.target.value)} >
             <option selected>Open this select menu</option>
-            <option value="Fulltime">Postgraduate</option>
-            <option value="Online">Undergraduate</option>
-            <option value="Partime">Diploma</option>
+            <option value="Fulltime">Fulltime</option>
+            <option value="Partime">Partime</option>
             </select>
         </Form.Group>
 
@@ -458,7 +457,7 @@ const Tertiary = ()=>{
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
-        <Form.Label>Coarse Duration</Form.Label>
+        <Form.Label>Course Duration</Form.Label>
             <select class="custom-select" style={{width: '100%'}} onChange={(e) => setCoarseduration(e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="1">1</option>
@@ -502,6 +501,7 @@ const Tertiary = ()=>{
             <option selected>Open this select menu</option>
             <option value="totalorphan">Total orphan</option>
             <option value="partialorphan">Partial orphan</option>
+            <option value="singleparent">Single Parent</option>
             <option value="bothparentsalive">Both parents alive</option>
             </select>
         </Form.Group>
