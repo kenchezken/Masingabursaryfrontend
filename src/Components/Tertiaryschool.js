@@ -522,7 +522,7 @@ const Tertiary = ()=>{
             <option selected>Open this select menu</option>
             <option value="Earns more than kshs.50,000/=">Earns more than kshs.50,000/=</option>
             <option value="Earns less than kshs. 50,000/=">Earns less than kshs. 50,000/=</option>
-            <option value="No specoiic source of income">No specific source of income</option>
+            <option value="No specific source of income">No specific source of income</option>
             <option value="Not applicable">Not applicable</option>
             </select>
         </Form.Group>
