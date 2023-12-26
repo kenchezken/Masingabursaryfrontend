@@ -88,7 +88,7 @@ const Tertiary = ()=>{
 
     
   
-    fetch('http://127.0.0.1:5000/bursarymanagement/tertiaryapplication', {
+    fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
