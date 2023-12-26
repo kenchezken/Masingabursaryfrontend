@@ -24,7 +24,7 @@ const BursaryApplication = () => {
           fontStyle: "italic",
         }}
       >
-    Coutersy of Honourable Joshua Mbithi Mwalyo
+    Courtesy of Honourable Joshua Mbithi Mwalyo
       </h1>
       <div className="row" 
       style={

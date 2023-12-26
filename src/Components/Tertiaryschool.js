@@ -303,7 +303,7 @@ const Tertiary = ()=>{
 
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
-      <Form.Label>Chiefs Phonenumber</Form.Label>
+      <Form.Label>Chief's Phone no</Form.Label>
       <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
            setChiefphonenumber(e.target.value)
          
@@ -313,6 +313,14 @@ const Tertiary = ()=>{
       <Form.Label>Assistant Chief Name</Form.Label>
       <Form.Control type="text" placeholder="Assitantchief" onChange={(e) =>{
            setAssistantchiefname(e.target.value)
+        
+      }}/>
+    </Form.Group>
+
+    <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
+      <Form.Label>Assistant Chief Phone No</Form.Label>
+      <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
+          //  setAssistantchiefname(e.target.value)
         
       }}/>
     </Form.Group>
