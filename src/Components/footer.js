@@ -8,7 +8,7 @@ const Footer = () => {
     <footer>
       <div className="footer-content">
         <h3>Masinga Constituency</h3>
-        <p id="contact" >Contacts : 0724676585 
+        <p id="contact" >Email : Masingacdf@gmail.com
         </p>
         <p id="courtesyof">Courtesy of Hon. Joshua Mbithi Mwalyo</p>
 
