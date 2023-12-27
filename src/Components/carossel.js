@@ -20,7 +20,7 @@ function ControlledCarousel() {
           className="d-block w-100"
           src={firstImage}
           alt="First slide"
-          style={{ height: '500px', objectFit: 'fill' }}
+          style={{ height: '500px', objectFit: 'scale-down' }}
         />
       </Carousel.Item>
       <Carousel.Item>

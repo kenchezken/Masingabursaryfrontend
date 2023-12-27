@@ -45,7 +45,7 @@ const CountdownTimer = () => {
 
   return (
     <div className="countdown-container">
-      <h1 className="countdown-heading">Application will begin in:</h1>
+      <h1 className="countdown-heading">Application will begin in: <strong> 29th December 2023 to 7th January 2024</strong></h1>
       <div className="countdown-timer">
         <div className="countdown-item">
           <span style={{

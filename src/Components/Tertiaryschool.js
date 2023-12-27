@@ -88,7 +88,7 @@ const Tertiary = ()=>{
 
     
   
-    fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication', {
+    fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryappplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
