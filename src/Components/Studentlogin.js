@@ -15,11 +15,13 @@ function StudentLogin({setRole , setnationalid}) {
   const [formData, setFormData] = useState({
     Nationalid: "", // State for the Remember Me checkbox
   });
+
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     
     // TODO: Submit form data to backend
-   
+    setLoading(true);
     fetch("https://backendmasingaflassk.onrender.com/bursarymanagement/login", {
       method: "POST",
       headers: {
@@ -53,6 +55,9 @@ function StudentLogin({setRole , setnationalid}) {
           text: "Login failed. Please try again.",
           icon: "error",
         });
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after completion or error
       });
 
 
@@ -62,7 +67,7 @@ function StudentLogin({setRole , setnationalid}) {
   return (
     <Form
       style={{
-        width: '50%' ,
+        width: '80%' ,
         marginLeft: 'auto',
         marginRight: 'auto' ,
         marginTop: '50px',
@@ -82,7 +87,7 @@ function StudentLogin({setRole , setnationalid}) {
       </Form.Group>
       <Form.Group className="mb-3">
         <Button type="submit" style={{ background: '#154c79', width: '50%', margin: 'auto' }} onClick={handleSubmit}>
-          Login in
+          {loading ? 'Loading...' : 'Login-in'}
         </Button>
       </Form.Group>
     </Form>

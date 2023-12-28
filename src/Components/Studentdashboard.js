@@ -1,8 +1,8 @@
 import  React ,{useState , useEffect} from 'react';
 import './Studentdashboard.css'
+import { Link } from 'react-router-dom';
 
-
-function Studentdashboard({nationalid}){
+function Studentdashboard({nationalid , setapplicationid}){
 
     const [details, setdetails] = useState([]);
     const [error , seterror] = useState(null)
@@ -18,7 +18,9 @@ function Studentdashboard({nationalid}){
               return response.json();
             })
             .then(data => {
+                
               setdetails(data); // Assuming your API returns an array of details
+              setapplicationid(data[0].id)
               console.log(data);
             })
             .catch(error => {
@@ -54,7 +56,7 @@ function Studentdashboard({nationalid}){
               width: "80%",
             }}
           >
-            <tbody>
+       <tbody>
               <tr>
                 <th>#</th>
                 <th>Firstname</th>
@@ -63,7 +65,7 @@ function Studentdashboard({nationalid}){
       <th>Phonenumber</th>
       <th>Gender</th>
       <th>Nationalid</th>
-      {/* <th>GuardianNo</th> */}
+      <th>GuardianNo</th>
       <th>Guardiansid</th> {/* Fixed typo here */}
       <th>Disability</th>
       <th>Ward</th>
@@ -71,9 +73,11 @@ function Studentdashboard({nationalid}){
       <th>Sublocation</th>
       <th>Village</th>
       <th>Chiefname</th>
-      {/* <th>Chiefphonenumber</th> */}
-      {/* <th>Assistantchief</th> */}
+      <th>Chiefphonenumber</th>
+      <th>Assistantchief</th>
+      <th>AssistantchiefNo</th>
       <th>Institution</th>
+      <th>University</th>
       <th>Admno</th>
       <th>Mode of study</th>
       <th>Year of study</th>
@@ -95,17 +99,19 @@ function Studentdashboard({nationalid}){
         <td>{item.Phonenumber}</td>
         <td>{item.Gender}</td>
         <td>{item.Nationalid}</td>
-        {/* <td>{item.GuardiansNo}</td> */}
-        <td>{item.Guardiansid}</td>
+        <td>{item.GuardiansNo}</td>
+        <td>{item.Guardianid}</td>
         <td>{item.Disability}</td>
         <td>{item.Ward}</td>
         <td>{item.Location}</td>
         <td>{item.Sublocation}</td>
         <td>{item.Village}</td>
         <td>{item.Chiefname}</td>
-        {/* <td>{item.Chiefphonenumber}</td>
-        <td>{item.Assistantchief}</td> */}
+         <td>{item.Chiefphonenumber}</td>
+        <td>{item.AssistantChiefname}</td> 
+        <td>{item.Assistantchiefno}</td> 
         <td>{item.Institution}</td>
+        <td>{item.University}</td>
         <td>{item.Admno}</td>
         <td>{item.Modeofstudy}</td>
         <td>{item.Yearofstudy}</td>
@@ -115,6 +121,9 @@ function Studentdashboard({nationalid}){
         <td>{item.Fathersincome}</td>
         <td>{item.Mothersincome}</td>
         <td>{item.Approvalstatus}</td>
+        <td>
+          <Link to={`/Editdetails/${item.Nationalid}`}>Edit</Link>
+        </td>
                 </tr>
               ))}
             </tbody>

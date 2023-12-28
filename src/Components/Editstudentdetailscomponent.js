@@ -1,170 +1,90 @@
-import React, { useState } from "react";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import React, { useState , useEffect } from "react"
+import { useParams } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
+
+import Swal from 'sweetalert2'
+
+
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import bursaryform from '../images/bursaryform.pdf'
+const EditStudent =({applicationid})=>{
+    console.log(applicationid);
+    const {nationalid} = useParams()
+    const [details ,setDetails] = useState({})
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false)
 
-
-const Tertiary = ()=>{
-  const[Firstname , setFirstname] = useState('')
-  const[Middlename , setMiddlename] = useState('')
-  const[Lastname , setLastname] = useState('')
-  const[Gender , setGender] = useState('')
-
-  const[Assistantchiefno , setAssistantchiefno] = useState('')
-
-  const[Nationalid , setNationalid] = useState('')
-  const[Phonenumber , setPhonenumber] = useState('')
-  const[GuardiansNo , setGuardiansNo] = useState('')
-  const[Guardiansid , setGuardiansid] = useState('')
-  const[Disability ,setDisability] = useState('')
-  const[Ward , setWard] = useState('')
-  const[Levelofstudy , setLevelofstudy] = useState('')
-  const[Location , setLocation] = useState('')
-  const[Sublocation , setsublocaation] = useState('')
-  const[Village ,setVillage] = useState('') 
-  const[Chiefname , setChiefname] = useState('')
-  const[Chiefphonenumber , setChiefphonenumber] = useState('')
-  const [Assistantchiefname , setAssistantchiefname] = useState('')
-  const[Institution , setInstitution] = useState('')
-  const [University , setUniversity] = useState('')
-  const[Amountexpecting , setAmountexpecting] = useState('')
-  const[Admno , setAdmno] = useState('')
-  const[Modeofstudy , setModeofstudy] = useState('')
-  const[Yearofstudy , setYearofstudy] = useState('')
-  const[Semester , setSemester] = useState('')
-  const[Coarseduration , setCoarseduration] = useState('')
-  const[Family , setFamily] = useState('')
-  const[Fathersincome , setFathersincome] = useState('')
-  const[Mothersincome , setMothersincome] = useState('')
-  const[Approvalstatus , setApprovalstatus] = useState('Notapproved')
-  
-  const [loading, setLoading] = useState(false)
-  const MySwal = withReactContent(Swal)
-
-
-
-  function submitform(e) {
-    e.preventDefault();
-    setLoading(true);
-    // Check if any field is empty
-    if (
-      Firstname.trim() === '' ||
-      Middlename.trim() === '' ||
-      Lastname.trim() === '' ||
-      Gender.trim() === '' ||
-      Nationalid.trim() === '' ||
-      Phonenumber.trim() === '' ||
-      GuardiansNo.trim() === '' ||
-      Guardiansid.trim() === '' ||
-      Disability.trim() === '' ||
-      Ward.trim() === '' ||
-      Levelofstudy.trim() === '' ||
-      Location.trim() === '' ||
-      Sublocation.trim() === '' ||
-      Village.trim() === '' ||
-      Chiefname.trim() === '' ||
-      Chiefphonenumber.trim() === '' ||
-      Assistantchiefname.trim() === '' ||
-      Assistantchiefno.trim() === '' ||
-      Amountexpecting.trim() === '' ||
-      Admno.trim() === '' ||
-      Modeofstudy.trim() === '' ||
-      Yearofstudy.trim() === '' ||
-      Semester.trim() === '' ||
-      Coarseduration.trim() === '' ||
-      Family.trim() === '' ||
-      Fathersincome.trim() === '' ||
-      Mothersincome.trim() === ''
-  ) {
-      // Handle empty fields, maybe show an error message or prevent form submission
-      Swal.fire({
-        title: "Failed",
-        text: "Submission failed , kindly fill all the fields",
-        icon: "error",
-      });;
-      return;
-  }
-
-    
-  
-    fetch('https://backendmasingaflassk.onrender.com/bursarymanagement/tertiaryapplication', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        Firstname , Middlename ,Lastname, Gender, Phonenumber, Nationalid, GuardiansNo, Guardiansid, Disability,
-         Levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , Assistantchiefname, Assistantchiefno ,Institution, Admno,Amountexpecting ,
-        Modeofstudy, Yearofstudy, Semester, Coarseduration, Family, Fathersincome, University ,
-        Mothersincome, Approvalstatus
-      })
-    })
+    console.log(nationalid);
+  useEffect(() => {
+    // Fetch data for the specific nationalid
+    fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/mydetails/${nationalid}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      
       .then(data => {
-        Swal.fire({
-          title: "Good job!",
-          text: data.message,
-          icon: "success"
-        });
-        setLoading(false);
-        // Reset the form if needed
-        // resetForm();
+        setDetails(data); 
+        // Assuming your API returns details objectd
       })
       .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-          title: 'Error!',
-          text: 'Failed to create an application',
-          icon: 'error',
-        });
-        setLoading(false);
+        setError('Error fetching data');
+        console.error('There was an error fetching the data', error);
       });
-  }
-  const openManualForm = () => {
-    const link = document.createElement('a');
-    link.href = bursaryform // Path to your PDF file
-    link.download = 'bursaryform.pdf'; // Name to be downloaded
-    link.click();
-  };
-  
+  }, [nationalid]);
+
+  useEffect(() => {
+    console.log(details); // This will log whenever 'details' changes
+  }, [details]);
 
   
-  return(
-    <>
-         <Button
-        onClick={openManualForm}
-        style={{
-          marginLeft: '20px',
-          marginTop: '50px' ,
-          width: '30%',
-          transform: 'translateY(-50%)',
-          backgroundColor: '#4CAF50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          padding: '12px 20px',
-          textAlign: 'center',
-          textDecoration: 'none',
-          display: 'inline-block',
-          fontSize: '16px',
-          transitionDuration: '0.4s',
-          cursor: 'pointer',
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-        }}
-      >
-       Download BursaryForm
-      </Button>
-     <Form
+  const handleUpdate = (id) => {
+    fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/Tertiaryapplication/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(details), // Assuming details hold the updated data
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        Swal.fire({
+            title: "Update",
+            text: "Updated successfully.",
+            icon: "success",
+          });
+        // Handle successful update
+      })
+      .catch(error => {
+        setError('Error updating data');
+        console.error('There was an error updating the data', error);
+      });
+  };
+
+  const handleInputChange = (fieldName, value) => {
+    setDetails(prevDetails => ({
+      ...prevDetails,
+      [fieldName]: value
+    }));
+  };
+
+
+    return(
+
+        <div>
+            <h1 
+            style={{
+                fontSize :' 25px' ,
+                fontWeight : '20px' ,
+                textAlign: 'center' ,
+                justifyContent: 'center',
+            }}
+            >Carefully update your details </h1>
+
+            <Form
     style={{
       width: '80%' ,
       marginLeft: 'auto',
@@ -187,40 +107,38 @@ const Tertiary = ()=>{
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Firstname</Form.Label>
-      <Form.Control type="text" placeholder="Firstname" onChange={(e) =>{
-           setFirstname(e.target.value)
-           console.log(Firstname);
-      }}/>
+      <Form.Control type="text" placeholder="Firstname" 
+          onChange={(e) => handleInputChange('Firstname', e.target.value)} />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Middlename</Form.Label>
-      <Form.Control type="text" placeholder="Middlename" onChange={(e) =>{
-           setMiddlename(e.target.value)
-           console.log(Middlename);
-      }}/>
+      <Form.Control type="text" placeholder="Middlename"  
+          onChange={(e) => handleInputChange('Middlename', e.target.value)}
+      />
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Lastname</Form.Label>
-      <Form.Control type="text" placeholder="Lastname" onChange={(e) =>{
-           setLastname(e.target.value)
-           console.log(Lastname);
-      }}/>
+      <Form.Control type="text" placeholder="Lastname"
+          onChange={(e) => handleInputChange('Lastname', e.target.value)}/>
     </Form.Group>
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Gender</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setGender(e.target.options[e.target.selectedIndex].text)}>
+            <select class="custom-select" style={{width: '100%'}} 
+          onChange={(e) => handleInputChange('Gender', e.target.value)} >
             <option selected>Open this select menu</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Other</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
             </select>
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Persons with Disability</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setDisability(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}}
+            onChange={(e) => handleInputChange('Disability', e.target.value)}
+            >
             <option selected>Open this select menu</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -229,22 +147,30 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>National ID/Birth Certificate Number</Form.Label>
-      <Form.Control type="text" placeholder="Id.no" onChange={(e) => setNationalid(e.target.value)} />
+      <Form.Control type="text" placeholder="Id.no"
+      onChange={(e) => handleInputChange('Nationalid', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Your phoneNumber</Form.Label>
-      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setPhonenumber(e.target.value)} />
+      <Form.Control type="text" placeholder="phonenumber" 
+      onChange={(e) => handleInputChange('Phonenumber', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Guardians/Parents Mobile No.</Form.Label>
-      <Form.Control type="text" placeholder="phonenumber" onChange={(e) => setGuardiansNo(e.target.value)} />
+      <Form.Control type="text" placeholder="phonenumber" 
+       onChange={(e) => handleInputChange('GuardiansNo', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Guardians/Parents id.</Form.Label>
-      <Form.Control type="text" placeholder="ID.No" onChange={(e) => setGuardiansid(e.target.value)}/>
+      <Form.Control type="text" placeholder="ID.No"  
+      onChange={(e) => handleInputChange('Guardiansid', e.target.value)}
+      />
     </Form.Group>
 
 
@@ -273,60 +199,66 @@ const Tertiary = ()=>{
     
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Ward</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setWard(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} 
+           
+            onChange={(e) => handleInputChange('Ward', e.target.value)}
+            >
             <option selected>Open this select menu</option>
             <option value="MASINGACENTRAL">Masinga Central</option>
             <option value="EKALAKALAIKATINI">Ekalakala/Ikatini ward</option>
             <option value="NDITHINI">Ndithini ward</option>
-            <option value="KIVAA<">Kivaa ward</option>
+            <option value="Kivaa ward<">Kivaa ward</option>
             <option value="MUTHESYA">Muthesya ward</option>
             </select>
         </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Location</Form.Label>
-      <Form.Control type="text" placeholder="Location" onChange={(e) => setLocation(e.target.value)}/>
+      <Form.Control type="text" placeholder="Location" 
+      onChange={(e) => handleInputChange('Location', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Sub-location</Form.Label>
-      <Form.Control type="text" placeholder="sub-location" onChange={(e) => setsublocaation(e.target.value)}/>
+      <Form.Control type="text" placeholder="sub-location"
+      onChange={(e) => handleInputChange('Sublocation', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>Village</Form.Label>
-      <Form.Control type="text" placeholder="Village" onChange={(e) => setVillage(e.target.value)}/>
+      <Form.Control type="text" placeholder="Village" 
+      onChange={(e) => handleInputChange('Village', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Chief's Name</Form.Label>
-      <Form.Control type="text" placeholder="fullname" onChange={(e) =>{
-           setChiefname(e.target.value)
-          
-      }}/>
+      <Form.Control type="text" placeholder="fullname" 
+      onChange={(e) => handleInputChange('Chiefname', e.target.value)}
+      />
 
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Chief's Phone no</Form.Label>
-      <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
-           setChiefphonenumber(e.target.value)
-         
-      }}/>
+      <Form.Control type="text" placeholder="Phonenumber" 
+         onChange={(e) => handleInputChange('Chiefphonenumber', e.target.value)}
+      />
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Assistant Chief Name</Form.Label>
-      <Form.Control type="text" placeholder="Assitantchief" onChange={(e) =>{
-           setAssistantchiefname(e.target.value)
-        
-      }}/>
+      <Form.Control type="text" placeholder="Assitantchief" 
+        onChange={(e) => handleInputChange('Assistantchiefname', e.target.value)}
+      />
     </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Assistant Chief Phone No</Form.Label>
-      <Form.Control type="text" placeholder="Phonenumber" onChange={(e) =>{
-           setAssistantchiefno(e.target.value)
-        
-      }}/>
+      <Form.Control type="text" placeholder="Phonenumber"
+     
+      onChange={(e) => handleInputChange('Assistantchiefno', e.target.value)}
+      />
     </Form.Group>
  
   </Form>
@@ -356,7 +288,8 @@ const Tertiary = ()=>{
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
     <Form.Label>University</Form.Label>
-    <select className="custom-select" style={{ width: '100%' }} onChange={(e) => setUniversity(e.target.value)} >
+    <select className="custom-select" style={{ width: '100%' }} onChange={(e) => handleInputChange('University', e.target.value)}  >
+        <option defaultValue>Select a university</option>
         <option defaultValue>Select a university</option>
         <option value="ADVENTISTUNIVERSITYOFAFRICA">Adventist University of Africa</option>
         <option value="AFRICAINTERNATIONALUNIVERSITY">Africa International University</option>
@@ -381,12 +314,7 @@ const Tertiary = ()=>{
         <option value="LUKENYAUNIVERSITY">Lukenya University</option>
         <option value="MACHAKOSUNIVERSITY">Machakos University</option>
         <option value="JOMOKENYATTAUNIVERSITYOFAGRICULTUREANDTECHNOLOGY">Jomo Kenyata University of Agriculture and Technology University</option>
-        <option value="MASENOUNIVERSITY">Maseno University</option>
         <option value="MASINDEMULIROUNIVERSITY">MasindeMuliro University</option>
-        <option value="MURANGAUNIVERSITY">Murang'a University</option>
-        <option value="MOIUNIVERSITY">Moi University</option>
-        <option value="MULTIMEDIAUNIVERSITY">Multimedia University</option>
-        <option value="MERUUNIVERSITYOFSCIENCEANDTECHNOLOGY">Meru University</option>
         <option value="MASENOUNIVERSITY">Maseno University</option>
         <option value="MANAGEMENTUNIVERSITYOFAFRICA">Management University</option>
         <option value="PANAFRICAUNIVERSITY">Pan Africa Christian University</option>
@@ -396,6 +324,11 @@ const Tertiary = ()=>{
         <option value="RONGOUNIVERSITY">Rongo University</option>
         <option value="STPAULSUNIVERSITY">St Pauls University</option>
         <option value="STRATHMOREUNIVERSITY">Strathmore University</option>
+        <option value="MURANGAUNIVERSITY">Murang'a University</option>
+        <option value="MASENOUNIVERSITY">Maseno University</option>
+        <option value="MOIUNIVERSITY">Moi University</option>
+        <option value="MULTIMEDIAUNIVERSITY">Multimedia University</option>
+        <option value="MERUUNIVERSITYOFSCIENCEANDTECHNOLOGY">Meru University</option>
         <option value="EASTAFRICANUNIVERSITY">East Africa University</option>
         <option value="UZIMAUNIVERSITY">Uzima University</option>
         <option value="ZETECHUNIVERSITY">Zetech University</option>
@@ -435,27 +368,31 @@ const Tertiary = ()=>{
     <Form.Control
         type="text"
         placeholder="Institution"
-        onChange={(e) => setInstitution(e.target.value)}
+       
+        onChange={(e) => handleInputChange('Institution', e.target.value)}
     />
    
 </Form.Group>
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }} >
       <Form.Label>Amount Applied</Form.Label>
-      <Form.Control type="text" placeholder="Amount applied" onChange={(e) =>{
-           setAmountexpecting(e.target.value)
-      }}/>
+      <Form.Control type="text" placeholder="Amount applied" 
+      onChange={(e) => handleInputChange('Amountexpecting', e.target.value)}
+      />
 
     </Form.Group>
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
       <Form.Label>AdmissionNo/RegNo</Form.Label>
-      <Form.Control type="text" placeholder="Admission No" onChange={(e) => setAdmno(e.target.value)}/>
+      <Form.Control type="text" placeholder="Admission No"
+      
+      onChange={(e) => handleInputChange('Admno', e.target.value)}
+      />
     </Form.Group>
 
 
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Level of Study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setLevelofstudy(e.target.value)} >
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => handleInputChange('Levelofstudy', e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="Postgraduate">Postgraduate</option>
             <option value="Undergraduate">Undergraduate</option>
@@ -466,7 +403,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Mode of study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setModeofstudy(e.target.value)} >
+            <select class="custom-select" style={{width: '100%'}}  onChange={(e) => handleInputChange('Modeofstudy', e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="Fulltime">Fulltime</option>
             <option value="Partime">Partime</option>
@@ -476,7 +413,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Year of study</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setYearofstudy(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}}  onChange={(e) => handleInputChange('Yearofstudy', e.target.value)}>
             <option selected>Open this select menu</option>
             <option value=" Year1">1</option>
             <option value="Year2">2</option>
@@ -490,7 +427,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Semester</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setSemester(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}}  onChange={(e) => handleInputChange('Semester', e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="1st semester">1</option>
             <option value="2nd semester">2</option>
@@ -500,7 +437,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Course Duration</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setCoarseduration(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}} onChange={(e) => handleInputChange('Coarseduration', e.target.value)} >
             <option selected>Open this select menu</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -539,7 +476,7 @@ const Tertiary = ()=>{
   
     <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Family</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setFamily(e.target.value)} >
+            <select class="custom-select"  style={{width: '100%'}} onChange={(e) => handleInputChange('Family', e.target.value)}  >
             <option selected>Open this select menu</option>
             <option value="totalorphan">Total orphan</option>
             <option value="partialorphan">Partial orphan</option>
@@ -550,7 +487,7 @@ const Tertiary = ()=>{
 
         <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
         <Form.Label>Father's income</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setFathersincome(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}}  onChange={(e) => handleInputChange('Fathersincome', e.target.value)}>
             <option selected>Open this select menu</option>
             <option value="Earns more than kshs.50,000/=">Earns more than kshs.50,000/=</option>
             <option value="Earns less than kshs. 50,000/=">Earns less than kshs. 50,000/=</option>
@@ -558,9 +495,9 @@ const Tertiary = ()=>{
             <option value="Not applicable">Not applicable</option>
             </select>
         </Form.Group>
-        <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}>
+        <Form.Group className="mb-3" style={{ width: '80%', margin: 'auto' }}  onChange={(e) => handleInputChange('Mothersincome', e.target.value)}>
         <Form.Label>Mothers income</Form.Label>
-            <select class="custom-select" style={{width: '100%'}} onChange={(e) => setMothersincome(e.target.value)}>
+            <select class="custom-select" style={{width: '100%'}}>
             <option selected>Open this select menu</option>
             <option value="Earns more than kshs.50,000/=">Earns more than kshs.50,000/=</option>
             <option value="Earns less than kshs. 50,000/=">Earns less than kshs. 50,000/=</option>
@@ -571,14 +508,18 @@ const Tertiary = ()=>{
    
   
         <Form.Group className="mb-3">
-          <Button type="submit" style={{ background: 'green',borderColor:'green' , width: '50%', margin: 'auto' }}onClick={submitform} >
+          <Button  style={{ background: 'green',borderColor:'green' , width: '50%', margin: 'auto' }} onClick={() => handleUpdate(applicationid)} >
           {loading ? 'Submitting...' : 'SubmitForm'}
           </Button>
         </Form.Group>
   </Form>
-    </>
-   
-  )
-}
 
-export default Tertiary
+        </div>
+    )
+
+
+
+
+
+}
+export default EditStudent

@@ -20,7 +20,7 @@ const NavigationBar = () => {
     </NavLink>
           <NavLink exact to="/" className="nav-logo">
             <span style={{
-              fontSize: '25px',
+              fontSize: '15px',
               fontWeight: 'bolder'
             }}>MASINGA CONSTITUENCY</span>
             {/* <i className="fas fa-code"></i> */}

@@ -16,10 +16,13 @@ import Masingacentraltable from './Components/Masingacentraltable';
 import Ndithinitable  from './Components/Ndithiniwardtable'
 import Muthesyatable from './Components/Muthesya';
 import Ekalakalaikatinitable from './Components/Ekalakalaikatinitable';
+import Kivaatable from './Components/Kivaa';
+import EditStudent from './Components/Editstudentdetailscomponent';
 
 function App() {
   const [role , setRole] = useState("student")
   const[nationalid , setnationalid] = useState("")
+  const [applicationid , setapplicationid] = useState(null)
   return (
     <div className="App">
       
@@ -42,6 +45,7 @@ function App() {
           />}/>
            <Route path='/Studentdashboard' element={<Studentdashboard
             nationalid = {nationalid}
+            setapplicationid ={setapplicationid}
            />}/>
 
             <Route path='/Admindashboard' element={<Admindashboard
@@ -49,6 +53,9 @@ function App() {
            />}/>
             <Route path='/Masingacentraltable' element={<Masingacentraltable/>}/>
             <Route path='/Ndithinitable' element={<Ndithinitable/>}/>
+            <Route path='/Kivaa' element={<Kivaatable/>}/>
+            <Route path='/Editdetails/:nationalid' element={<EditStudent 
+            applicationid = {applicationid}/>}/>
             <Route path='/Muthesyatable' element={<Muthesyatable/>}/>
             <Route path='/Ekalakalaikatinitable' element={<Ekalakalaikatinitable/>}/>
 

@@ -3,11 +3,11 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import './Studentdashboard.css'
 
 
-const Ekalakalaikatinitable = ()=>{
+const Kivaatable = ()=>{
 
   const [allapplications , setapplications] = useState([])
   
-  const wardName = 'EKALAKALAIKATINI'
+  const wardName = 'KIVAA'
 
   useEffect(()=>{
     fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication/${wardName}`)
@@ -40,7 +40,7 @@ const Ekalakalaikatinitable = ()=>{
             fontStyle: "italic",
           }}
         >
-          applications for Ekalakala Ward
+          applications for Kivaa Ward
         </h1>
           
         <div className="tablediv">
@@ -137,4 +137,4 @@ const Ekalakalaikatinitable = ()=>{
     )
 }
 
-export default Ekalakalaikatinitable;
+export default Kivaatable;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './countdown.css'
 const CountdownTimer = () => {
-  const countdownDate = new Date('December 29, 2023 00:00:00').getTime(); // Set your countdown date here
+  const countdownDate = new Date('January 7, 2024 00:00:00').getTime(); // Set your countdown date here
 
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -45,7 +45,10 @@ const CountdownTimer = () => {
 
   return (
     <div className="countdown-container">
-      <h1 className="countdown-heading">Application will begin in: <strong> 29th December 2023 to 7th January 2024</strong></h1>
+      <h3 style={{
+        fontSize: '15px',
+  
+      }} className="countdown-heading">Application will endOn : <strong> 7th January 2024</strong></h3>
       <div className="countdown-timer">
         <div className="countdown-item">
           <span style={{

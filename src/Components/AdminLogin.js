@@ -13,11 +13,12 @@ function AdminLogin({setnationalid}) {
     Phonenumber: "",
     password: ""
   });
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     
     // TODO: Submit form data to backend
-   
+    setLoading(true); // Set loading to true on form submit
     fetch("https://backendmasingaflassk.onrender.com/bursarymanagement/loginadmin", {
       method: "POST",
       headers: {
@@ -33,34 +34,30 @@ function AdminLogin({setnationalid}) {
       })
       .then((data) => {
         console.log("Response data:", data);
-        console.log(data.nationalid)
+
         Swal.fire({
           title: "Login",
           text: "Login Successful!",
           icon: "success"
         });
+        
         history("/Admindashboard")
        
         setnationalid(data.nationalid);
       })
       .catch((response) => {
         console.error("Error:", response.message);
-        Swal.fire({
-          title: "Login",
-          text: "Login failed. Please try again.",
-          icon: "error",
-        });
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after completion or error
       });
-
-
-   
   };
 
 
   return (
     <Form
       style={{
-        width: '50%' ,
+        width: '80%' ,
         marginLeft: 'auto',
         marginRight: 'auto' ,
         marginTop: '50px',
@@ -86,7 +83,7 @@ function AdminLogin({setnationalid}) {
 
       <Form.Group className="mb-3">
         <Button type="submit" style={{ background: '#154c79', width: '50%', margin: 'auto' }} onClick={handleSubmit}> 
-          Sign in
+        {loading ? 'Loading...' : 'Login'} 
         </Button>
       </Form.Group>
     </Form>

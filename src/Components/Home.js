@@ -12,8 +12,9 @@ function Home() {
   return (
     <>
     <Marquee/>
+     <CountdownTimer/>
      <ControlledCarousel/>
-      <CountdownTimer/>
+    
     <Footer
     />
     </>
