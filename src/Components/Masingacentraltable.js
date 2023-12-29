@@ -108,7 +108,7 @@ const Masingacentraltable = ()=>{
 <td>{item.Chiefphonenumber}</td>
 <td>{item.AssistantChiefname}</td> 
 <td>{item.Assistantchiefno}</td> 
-<td>{item.Institution}</td>
+<td>{item.Instituition}</td>
 <td>{item.University}</td>
 <td>{item.Admno}</td>
 <td>{item.Modeofstudy}</td>

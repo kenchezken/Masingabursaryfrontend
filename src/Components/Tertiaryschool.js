@@ -29,7 +29,7 @@ const Tertiary = ()=>{
   const[Chiefname , setChiefname] = useState('')
   const[Chiefphonenumber , setChiefphonenumber] = useState('')
   const [Assistantchiefname , setAssistantchiefname] = useState('')
-  const[Institution , setInstitution] = useState('')
+  const[Instituition , setInstituition] = useState('')
   const [University , setUniversity] = useState('')
   const[Amountexpecting , setAmountexpecting] = useState('')
   const[Admno , setAdmno] = useState('')
@@ -98,7 +98,7 @@ const Tertiary = ()=>{
       },
       body: JSON.stringify({
         Firstname , Middlename ,Lastname, Gender, Phonenumber, Nationalid, GuardiansNo, Guardiansid, Disability,
-         Levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , Assistantchiefname, Assistantchiefno ,Institution, Admno,Amountexpecting ,
+         Levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , Assistantchiefname, Assistantchiefno ,Instituition, Admno,Amountexpecting ,
         Modeofstudy, Yearofstudy, Semester, Coarseduration, Family, Fathersincome, University ,
         Mothersincome, Approvalstatus
       })
@@ -435,7 +435,7 @@ const Tertiary = ()=>{
     <Form.Control
         type="text"
         placeholder="Institution"
-        onChange={(e) => setInstitution(e.target.value)}
+        onChange={(e) => setInstituition(e.target.value)}
     />
    
 </Form.Group>
