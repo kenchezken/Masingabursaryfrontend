@@ -15,7 +15,7 @@ const Marquee = () => {
     // Your JSX code here
     <div>
       <marquee behavior="scroll" direction="left" style={marqueeStyle} >
-       Bursary Application For Financial Year 2023/2024 Is Now closed!!!
+       Bursary Application For Financial Year 2023/2024 Is Now Open!!!
       </marquee>
     </div>
   );

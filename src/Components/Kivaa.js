@@ -7,7 +7,7 @@ const Kivaatable = ()=>{
 
   const [allapplications , setapplications] = useState([])
   
-  const wardName = 'KIVAA'
+  const wardName = 'KIVAA<'
 
   useEffect(()=>{
     fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication/${wardName}`)
