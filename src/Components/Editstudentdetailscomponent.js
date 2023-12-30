@@ -290,7 +290,6 @@ const EditStudent =({applicationid})=>{
     <Form.Label>University</Form.Label>
     <select className="custom-select" style={{ width: '100%' }} onChange={(e) => handleInputChange('University', e.target.value)}  >
         <option defaultValue>Select a university</option>
-        <option defaultValue>Select a university</option>
         <option value="ADVENTISTUNIVERSITYOFAFRICA">Adventist University of Africa</option>
         <option value="AFRICAINTERNATIONALUNIVERSITY">Africa International University</option>
         <option value="AFRICANAZARENEUNIVERSITY">Africa Nazarene University</option>
@@ -308,14 +307,13 @@ const EditStudent =({applicationid})=>{
         <option value="KIBABIIUNIVERSITY">Kibabii University</option>
         <option value="KCAUNIVERSITY">KCA University</option>
         <option value="LAIKIPIAUNIVERSITY">Laikipia University</option>
-        <option value="KIRINYAGA UNIVERSITY">Zetech University</option>
+        <option value="KIRINYAGA UNIVERSITY">Kirinyaga University</option>
         <option value="KIRIRIWOMENS">Kiriri Womens University</option>
         <option value="KISIIUNIVERSITY">Kisii University</option>
         <option value="LUKENYAUNIVERSITY">Lukenya University</option>
         <option value="MACHAKOSUNIVERSITY">Machakos University</option>
         <option value="JOMOKENYATTAUNIVERSITYOFAGRICULTUREANDTECHNOLOGY">Jomo Kenyata University of Agriculture and Technology University</option>
         <option value="MASINDEMULIROUNIVERSITY">MasindeMuliro University</option>
-        <option value="MASENOUNIVERSITY">Maseno University</option>
         <option value="MANAGEMENTUNIVERSITYOFAFRICA">Management University</option>
         <option value="PANAFRICAUNIVERSITY">Pan Africa Christian University</option>
         <option value="PWANIUNIVERSITY">Pwani University</option>
@@ -330,6 +328,8 @@ const EditStudent =({applicationid})=>{
         <option value="MULTIMEDIAUNIVERSITY">Multimedia University</option>
         <option value="MERUUNIVERSITYOFSCIENCEANDTECHNOLOGY">Meru University</option>
         <option value="EASTAFRICANUNIVERSITY">East Africa University</option>
+        <option value="EGERTONUNIVERSITY">Egerton University</option>
+        <option value="ELDORETUNIVERSITY">Eldoret University</option>
         <option value="UZIMAUNIVERSITY">Uzima University</option>
         <option value="ZETECHUNIVERSITY">Zetech University</option>
         <option value="UMMAUNIVERSITY">Umma University</option>
@@ -338,7 +338,7 @@ const EditStudent =({applicationid})=>{
         <option value="CATHOLICUNIVERSITY">Catholic University of East Africa</option>
         <option value="TAITATAVETAUNIVERSITY">TaitaTaveta University</option>
         <option value="STRATHMOREUNIVERSITY">Strathmore University</option>
-        <option value="MAASAIUNIVERSITY">Maasai University</option>
+        <option value="MAASAIUNIVERSITY">MaasaiMara University</option>
         <option value="KIRIRIUNIVERSITY">Kiriri University</option>
         <option value="KENYAMETHODISTUNIVERSITY">Kenya Methodist University</option>
         <option value="MOUNTKENYAUNIVERSITY">Mount Kenya University</option>
@@ -367,9 +367,9 @@ const EditStudent =({applicationid})=>{
     </Form.Text>
     <Form.Control
         type="text"
-        placeholder="Institution"
+        placeholder="Instituition"
        
-        onChange={(e) => handleInputChange('Institution', e.target.value)}
+        onChange={(e) => handleInputChange('Instituition', e.target.value)}
     />
    
 </Form.Group>
