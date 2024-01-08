@@ -573,7 +573,7 @@ const Tertiary = ()=>{
    
   
         <Form.Group className="mb-3">
-          <Button type="submit" style={{ background: 'green',borderColor:'green' , width: '50%', margin: 'auto' }}onClick={submitform} >
+          <Button type="submit" style={{ background: 'green',borderColor:'green' , width: '50%', margin: 'auto' }}  >
           {loading ? 'Submitting...' : 'SubmitForm'}
           </Button>
         </Form.Group>

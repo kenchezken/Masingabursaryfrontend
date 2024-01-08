@@ -3,15 +3,21 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Swal from 'sweetalert2';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Studentdashboard.css'
-
+import { css } from '@emotion/react';
+import { RingLoader } from 'react-spinners';
 
 function Admindashboard({nationalid}){
 
     const [applications, setapplication] = useState([]);
     const [error , seterror] = useState(null)
     const [searchTerm, setSearchTerm] = useState('');
-
+    const [isLoading, setIsLoading] = useState(true);
     const history = useNavigate()
+
+    const spinnerStyle = css`
+  display: block;
+  margin: 0 auto;
+`;
 
     const handleSearchChange = (e) => {
       setSearchTerm(e.target.value);
@@ -21,7 +27,7 @@ function Admindashboard({nationalid}){
     
     useEffect(() => {
         // Fetch data only if nationalid is available
-      
+          setIsLoading(true);
           fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication`)
             .then(response => {
               if (!response.ok) {
@@ -36,6 +42,9 @@ function Admindashboard({nationalid}){
             .catch(error => {
               seterror('Error fetching data');
               console.error('There was an error fetching the data', error);
+            })
+            .finally(() => {
+              setIsLoading(false);
             });
         
       }, [nationalid]); // Fetch whenever nationalid changesThis empty dependency array ensures the effect runs once on component mount
@@ -120,217 +129,223 @@ function Admindashboard({nationalid}){
     
       return (
         <>
-        <div style={{
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '10px', /* Adjust the gap between buttons */
-  margin: '50px auto', /* Adjust the margin */
-  width: '50%', /* Adjust the width as needed */
-}}>
-        <button style={{
-          background:'red',
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          color: 'white',
-          cursor: 'pointer',
-        }} onClick={masingabutton} > MasingaCentral </button>
-        <button
-        style={{
-          background: 'red' ,
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-        onClick={Ndithinibutton} 
-        >Ndithini</button>
-        <button 
-        style={{
-          background: 'red' ,
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-        onClick={Ekalakalabutton} 
-        >Ekalakala/ikatini</button>
-        <button
-        style={{
-          background: 'red',
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-        onClick={Muthesyabutton} 
-        >Muthesya</button>
-            <button
-        style={{
-          background: 'red',
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-        onClick={Kivaabutton} 
-        >Kivaa</button>
-        </div >
 
-        <h1
-          style={{
-            fontFamily: "cursive",
-            textAlign: "center",
-            fontWeight: "lighter",
-            marginTop: "2rem",
-            fontStyle: "italic",
-          }}
-        >
-          All applications
-        </h1>
-        
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <p style={{ 
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        backgroundColor: '#f0f0f0',
-        padding: '10px',
-        borderRadius: '5px',
-        boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
-        display: 'inline-block'
-      }}>
-        Total Applications: {totalApplicationsCount}
-      </p>
-    </div>
-
-     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-      <input
-        id='searchinput'
-        type="text"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        placeholder="Search by any field"
-        style={{
-          padding: '10px',
-          borderRadius: '20px',
-          border: '2px solid #aaa',
-          width: '500px',
-          outline: 'none',
-          boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-          transition: 'box-shadow 0.3s, border-color 0.3s',
-          marginRight: '10px',
-          fontSize: '1rem',
-        }}
-      />
-  
-    </div>
-        <div className="tablediv">
-       
-          <table
-            id="application"
-            style={{
-              borderCollapse: "separate",
-              borderSpacing: "0px 10px",
-              borderRadius: "15px",
-              margin: "2rem",
-              width: "80%",
-            }}
-          >
-            <tbody>
-            <tr>
-                <th>#</th>
-                <th>Firstname</th>
-      <th>Middlename</th>
-      <th>Lastname</th>
-      <th>Phonenumber</th>
-      <th>Gender</th>
-      <th>Nationalid</th>
-      <th>GuardianNo</th>
-      <th>Guardiansid</th> {/* Fixed typo here */}
-      <th>Disability</th>
-      <th>Ward</th>
-      <th>Location</th>
-      <th>Sublocation</th>
-      <th>Village</th>
-      <th>Chiefname</th>
-      <th>Chiefphonenumber</th>
-      <th>Assistantchief</th>
-      <th>AssistantchiefNo</th>
-      <th>Institution</th>
-      <th>University</th>
-      <th>Admno</th>
-      <th>Mode of study</th>
-      <th>Year of study</th>
-      <th>Semester</th>
-      <th>Coarse duration</th>
-      <th>Family</th>
-      <th>Fathersincome</th>
-      <th>Mothersincome</th>
-      <th>Approvalstatus</th>
-              </tr>
-              {filteredApplications.map((item, index) => (
-      
-      <tr key={item.id}>
-      <td style={{ marginBottom: "10px" }}>{index + 1}</td>
-      <td>{item.Firstname}</td>
-<td>{item.Middlename}</td>
-<td>{item.Lastname}</td>
-<td>{item.Phonenumber}</td>
-<td>{item.Gender}</td>
-<td>{item.Nationalid}</td>
-<td>{item.GuardiansNo}</td>
-<td>{item.Guardianid}</td>
-<td>{item.Disability}</td>
-<td>{item.Ward}</td>
-<td>{item.Location}</td>
-<td>{item.Sublocation}</td>
-<td>{item.Village}</td>
-<td>{item.Chiefname}</td>
-<td>{item.Chiefphonenumber}</td>
-<td>{item.AssistantChiefname}</td> 
-<td>{item.Assistantchiefno}</td> 
-<td>{item.Instituition}</td>
-<td>{item.University}</td>
-<td>{item.Admno}</td>
-<td>{item.Modeofstudy}</td>
-<td>{item.Yearofstudy}</td>
-<td>{item.Semester}</td>
-<td>{item.Coarseduration}</td>
-<td>{item.Family}</td>
-<td>{item.Fathersincome}</td>
-<td>{item.Mothersincome}</td>
-<td  onClick={(e)=>Handleonapprove(e , item)}  
-    style={{
-      cursor: 'pointer'
-
-    }}
-    >{item.Approvalstatus}</td>
-    </tr>
-              ))}
-            </tbody>
-          </table>
+{isLoading ? (
+        <div className="spinner-container">
+          <RingLoader loading={isLoading} color="#36D7B7" css={spinnerStyle} size={150} />
         </div>
-        <ReactHTMLTableToExcel
-        id="test-table-xls-button"
-        className="download-table-xls-button"
-        table="application"
-        filename="EkalakalaIkatini"
-        sheet="applications"
-        buttonText="Download as Excel"
-      />
+      ) : (
+        <>
+       <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px', /* Adjust the gap between buttons */
+          margin: '50px auto', /* Adjust the margin */
+          width: '50%', /* Adjust the width as needed */
+        }}>
+                <button style={{
+                  background:'red',
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '5px',
+                  color: 'white',
+                  cursor: 'pointer',
+                }} onClick={masingabutton} > MasingaCentral </button>
+                <button
+                style={{
+                  background: 'red' ,
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '5px',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onClick={Ndithinibutton} 
+                >Ndithini</button>
+                <button 
+                style={{
+                  background: 'red' ,
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '5px',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onClick={Ekalakalabutton} 
+                >Ekalakala/ikatini</button>
+                <button
+                style={{
+                  background: 'red',
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '5px',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onClick={Muthesyabutton} 
+                >Muthesya</button>
+                    <button
+                style={{
+                  background: 'red',
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '5px',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onClick={Kivaabutton} 
+                >Kivaa</button>
+                </div >
         
+                <h1
+                  style={{
+                    fontFamily: "cursive",
+                    textAlign: "center",
+                    fontWeight: "lighter",
+                    marginTop: "2rem",
+                    fontStyle: "italic",
+                  }}
+                >
+                  All applications
+                </h1>
+                
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <p style={{ 
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                backgroundColor: '#f0f0f0',
+                padding: '10px',
+                borderRadius: '5px',
+                boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+                display: 'inline-block'
+              }}>
+                Total Applications: {totalApplicationsCount}
+              </p>
+            </div>
+        
+             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+              <input
+                id='searchinput'
+                type="text"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="Search by any field"
+                style={{
+                  padding: '10px',
+                  borderRadius: '20px',
+                  border: '2px solid #aaa',
+                  width: '500px',
+                  outline: 'none',
+                  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+                  transition: 'box-shadow 0.3s, border-color 0.3s',
+                  marginRight: '10px',
+                  fontSize: '1rem',
+                }}
+              />
+          
+            </div>
+                <div className="tablediv">
+               
+                  <table
+                    id="application"
+                    style={{
+                      borderCollapse: "separate",
+                      borderSpacing: "0px 10px",
+                      borderRadius: "15px",
+                      margin: "2rem",
+                      width: "80%",
+                    }}
+                  >
+                    <tbody>
+                    <tr>
+                        <th>#</th>
+                        <th>Firstname</th>
+              <th>Middlename</th>
+              <th>Lastname</th>
+              <th>Phonenumber</th>
+              <th>Gender</th>
+              <th>Nationalid</th>
+              <th>GuardianNo</th>
+              <th>Guardiansid</th> {/* Fixed typo here */}
+              <th>Disability</th>
+              <th>Ward</th>
+              <th>Location</th>
+              <th>Sublocation</th>
+              <th>Village</th>
+              <th>Chiefname</th>
+              <th>Chiefphonenumber</th>
+              <th>Assistantchief</th>
+              <th>AssistantchiefNo</th>
+              <th>Institution</th>
+              <th>University</th>
+              <th>Admno</th>
+              <th>Mode of study</th>
+              <th>Year of study</th>
+              <th>Semester</th>
+              <th>Coarse duration</th>
+              <th>Family</th>
+              <th>Fathersincome</th>
+              <th>Mothersincome</th>
+              <th>Approvalstatus</th>
+                      </tr>
+                      {filteredApplications.map((item, index) => (
+              
+              <tr key={item.id}>
+              <td style={{ marginBottom: "10px" }}>{index + 1}</td>
+              <td>{item.Firstname}</td>
+        <td>{item.Middlename}</td>
+        <td>{item.Lastname}</td>
+        <td>{item.Phonenumber}</td>
+        <td>{item.Gender}</td>
+        <td>{item.Nationalid}</td>
+        <td>{item.GuardiansNo}</td>
+        <td>{item.Guardianid}</td>
+        <td>{item.Disability}</td>
+        <td>{item.Ward}</td>
+        <td>{item.Location}</td>
+        <td>{item.Sublocation}</td>
+        <td>{item.Village}</td>
+        <td>{item.Chiefname}</td>
+        <td>{item.Chiefphonenumber}</td>
+        <td>{item.AssistantChiefname}</td> 
+        <td>{item.Assistantchiefno}</td> 
+        <td>{item.Instituition}</td>
+        <td>{item.University}</td>
+        <td>{item.Admno}</td>
+        <td>{item.Modeofstudy}</td>
+        <td>{item.Yearofstudy}</td>
+        <td>{item.Semester}</td>
+        <td>{item.Coarseduration}</td>
+        <td>{item.Family}</td>
+        <td>{item.Fathersincome}</td>
+        <td>{item.Mothersincome}</td>
+        <td  onClick={(e)=>Handleonapprove(e , item)}  
+            style={{
+              cursor: 'pointer'
+        
+            }}
+            >{item.Approvalstatus}</td>
+            </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="application"
+                filename="EkalakalaIkatini"
+                sheet="applications"
+                buttonText="Download as Excel"
+              />
+        </>
+      )}
+    
+          
       </>
     );
     
+          }
     
-          
-
-}
-
-
 export default Admindashboard;
