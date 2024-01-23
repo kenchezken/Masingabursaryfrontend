@@ -31,6 +31,14 @@ const Ndithinitable = ()=>{
 
     return(
        <div>
+          <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button"
+        table="application"
+        filename="Ndithini applications"
+        sheet="applications"
+        buttonText="Download as Excel"
+      />
            <h1
           style={{
             fontFamily: "cursive",
@@ -125,14 +133,7 @@ const Ndithinitable = ()=>{
          </tbody>
        </table>
      </div>
-     <ReactHTMLTableToExcel
-        id="test-table-xls-button"
-        className="download-table-xls-button"
-        table="application"
-        filename="Masinga applications"
-        sheet="applications"
-        buttonText="Download as Excel"
-      />
+   
        </div>
     )
 }

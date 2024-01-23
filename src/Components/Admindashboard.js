@@ -197,7 +197,14 @@ function Admindashboard({nationalid}){
                 onClick={Kivaabutton} 
                 >Kivaa</button>
                 </div >
-        
+                <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="application"
+                filename="All Application"
+                sheet="applications"
+                buttonText="Download as Excel"
+              />
                 <h1
                   style={{
                     fontFamily: "cursive",
@@ -331,14 +338,7 @@ function Admindashboard({nationalid}){
                     </tbody>
                   </table>
                 </div>
-                <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="download-table-xls-button"
-                table="application"
-                filename="EkalakalaIkatini"
-                sheet="applications"
-                buttonText="Download as Excel"
-              />
+               
         </>
       )}
     
