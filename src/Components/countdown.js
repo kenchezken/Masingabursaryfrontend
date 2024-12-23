@@ -48,7 +48,7 @@ const CountdownTimer = () => {
       <h3 style={{
         fontSize: '15px',
   
-      }} className="countdown-heading">Application will endOn : <strong> 5th January 2025</strong></h3>
+      }} className="countdown-heading">Application will endOn : <strong> 10th January 2025</strong></h3>
       <div className="countdown-timer">
         <div className="countdown-item">
           <span style={{
