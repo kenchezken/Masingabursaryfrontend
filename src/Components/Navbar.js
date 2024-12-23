@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHamburger } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.png'
 import './Navbar.css'; // Import a CSS file for custom styles
@@ -102,13 +103,13 @@ const NavigationBar = () => {
 
             {click ? (
               <span className="icon">
-                 <FontAwesomeIcon icon={faHamburger} />
+                 <FontAwesomeIcon icon={faTimes} />
               </span>
             ) : (
               <span className="icon">
-                <FontAwesomeIcon icon={faHamburger}/>
+                <FontAwesomeIcon icon={faBars}/>
               </span>
-            )}z
+            )}
           </div>
         </div>
       </nav>

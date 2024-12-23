@@ -50,7 +50,7 @@ const BursaryApplication = () => {
         <strong>1.</strong> Click the link. <strong> https://bursaryapplication.onrender.com</strong><br />
         <strong>2.</strong> Click on <strong>Bursary Application in the NavigationBar ,when using a Laptop/Computer . </strong> <br /> (For Mobile Phone Application Click on the <strong>3bars on the Top right of your device)</strong> <br/>
         <strong>3.</strong> Select the <strong>Tertiary Institution Bursary</strong> section and click <strong>Apply</strong>.<br />
-        <strong>4.</strong> Carefully fill all the fields as expected.<br />
+        <strong>4.</strong> Carefully fill all the fields as expected and Carefully upload the frontside of your id/birthcertificate<br />
         <strong>5.</strong> Then click on the <strong>Submit Button</strong>.<br/>
         <strong>6.</strong> To verify your submission and edit your details incase of error ,click to studentLogin and use your  <strong>National ID or Birth Certificate Number</strong>.
       </p>

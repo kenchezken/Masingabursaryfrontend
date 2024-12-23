@@ -272,7 +272,7 @@ const Tertiary = () => {
                   onChange={(e) => setGender(e.target.value)
                     
                   } >
-                  <option selected>Open this select menu</option>
+                  <option selected>Open to select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -281,7 +281,7 @@ const Tertiary = () => {
             <select class="custom-select" style={{width: '100%'}}
             value={Disability}
             onChange={(e) => setDisability(e.target.value)} >
-            <option selected>Open this select menu</option>
+            <option selected>Disability check</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             </select>
