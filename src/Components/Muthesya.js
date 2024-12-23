@@ -4,13 +4,13 @@ import './Studentdashboard.css'
 
 
 const Muthesyatable = ()=>{
-
+    
   const [allapplications , setapplications] = useState([])
   
   const wardName = 'MUTHESYA'
 
   useEffect(()=>{
-    fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication/${wardName}`)
+    fetch(`http://127.0.0.1:5000/bursarymanagement/allapplication/${wardName}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

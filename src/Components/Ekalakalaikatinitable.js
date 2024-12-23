@@ -10,7 +10,7 @@ const Ekalakalaikatinitable = ()=>{
   const wardName = 'EKALAKALAIKATINI'
 
   useEffect(()=>{
-    fetch(`https://backendmasingaflassk.onrender.com/bursarymanagement/allapplication/${wardName}`)
+    fetch(`http://127.0.0.1:5000/bursarymanagement/allapplication/${wardName}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -96,7 +96,6 @@ const Ekalakalaikatinitable = ()=>{
       <th>Approvalstatus</th>
               </tr>
               {allapplications.map((item, index) => (
-      
       <tr key={item.id}>
       <td style={{ marginBottom: "10px" }}>{index + 1}</td>
       <td>{item.Firstname}</td>

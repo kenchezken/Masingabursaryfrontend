@@ -9,7 +9,8 @@ import './Navbar.css'; // Import a CSS file for custom styles
 const NavigationBar = () => {
   const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(!click);
+  const handleClick = () =>
+    setClick(!click);
   return (
     <>
       <nav className="navbar">
@@ -107,7 +108,7 @@ const NavigationBar = () => {
               <span className="icon">
                 <FontAwesomeIcon icon={faHamburger}/>
               </span>
-            )}
+            )}z
           </div>
         </div>
       </nav>

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigationbar from './Components/Navbar';
+import Totalapplicants from './Components/Applications';
+import Graphicalanalysis from './Components/GraphicalAnalysis';
+import Admindashboard from './Components/Admindashboard';
 import BursaryApplication from './Components/BursaryApplication';
 import About from './Components/About';
 import Contactus from './Components/Contactus';
@@ -11,12 +14,12 @@ import Secondaryschool from './Components/Secondaryschool';
 import Tertiary from './Components/Tertiaryschool';
 import StudentLogin from './Components/Studentlogin';
 import Studentdashboard from './Components/Studentdashboard';
-import Admindashboard from './Components/Admindashboard';
 import Masingacentraltable from './Components/Masingacentraltable';
 import Ndithinitable  from './Components/Ndithiniwardtable'
 import Muthesyatable from './Components/Muthesya';
 import Ekalakalaikatinitable from './Components/Ekalakalaikatinitable';
 import Kivaatable from './Components/Kivaa';
+import Searchstudent from './Components/Searchstudent';
 import EditStudent from './Components/Editstudentdetailscomponent';
 
 function App() {
@@ -27,7 +30,6 @@ function App() {
     <div className="App">
       
       <BrowserRouter>
-        <Navigationbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Home />} />
@@ -49,7 +51,6 @@ function App() {
            />}/>
 
             <Route path='/Admindashboard' element={<Admindashboard
-            nationalid = {nationalid}
            />}/>
             <Route path='/Masingacentraltable' element={<Masingacentraltable/>}/>
             <Route path='/Ndithinitable' element={<Ndithinitable/>}/>
@@ -58,6 +59,11 @@ function App() {
             applicationid = {applicationid}/>}/>
             <Route path='/Muthesyatable' element={<Muthesyatable/>}/>
             <Route path='/Ekalakalaikatinitable' element={<Ekalakalaikatinitable/>}/>
+    
+            <Route path = '/Applications' element = {<Totalapplicants/>}/>
+            <Route path = '/graphicalanalysis' element = {<Graphicalanalysis/>}/>
+            <Route path='/Searchstudent'  element= {<Searchstudent/>}/>
+           
 
           </Routes>
          

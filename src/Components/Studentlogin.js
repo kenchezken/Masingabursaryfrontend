@@ -17,12 +17,13 @@ function StudentLogin({setRole , setnationalid}) {
   });
 
   const [loading, setLoading] = useState(false);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     
     // TODO: Submit form data to backend
     setLoading(true);
-    fetch("https://backendmasingaflassk.onrender.com/bursarymanagement/login", {
+    fetch("http://127.0.0.1:5000/bursarymanagement/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
