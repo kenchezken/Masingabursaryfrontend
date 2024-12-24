@@ -49,32 +49,48 @@ const CountdownTimer = () => {
         fontSize: '15px',
   
       }} className="countdown-heading">Application will endOn : <strong> 10th January 2025</strong></h3>
-      <div className="countdown-timer">
-        <div className="countdown-item">
-          <span style={{
-            color: 'white'
-          }}>{timeRemaining.days}</span>
-          <span>Days</span>
-        </div>
-        <div className="countdown-item">
-          <span style={{
-            color: 'white'
-          }}>{timeRemaining.hours}</span>
-          <span>Hours</span>
-        </div>
-        <div className="countdown-item">
-          <span style={{
-            color: 'white'
-          }}>{timeRemaining.minutes}</span>
-          <span>Minutes</span>
-        </div>
-        <div className="countdown-item">
-          <span  style={{
-            color: 'white'
-          }}>{timeRemaining.seconds}</span>
-          <span>Seconds</span>
-        </div>
-      </div>
+<div
+  className="countdown-timer flex flex-wrap justify-center items-center gap-6 p-6 rounded-lg bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 shadow-lg"
+  style={{
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '600px',
+  }}
+>
+  <div className="countdown-item flex flex-col items-center">
+    <span
+      className="text-4xl font-bold text-white"
+    >
+      {timeRemaining.days}
+    </span>
+    <span className="text-sm font-medium text-gray-200">Days</span>
+  </div>
+  <div className="countdown-item flex flex-col items-center">
+    <span
+      className="text-4xl font-bold text-white"
+    >
+      {timeRemaining.hours}
+    </span>
+    <span className="text-sm font-medium text-gray-200">Hours</span>
+  </div>
+  <div className="countdown-item flex flex-col items-center">
+    <span
+      className="text-4xl font-bold text-white"
+    >
+      {timeRemaining.minutes}
+    </span>
+    <span className="text-sm font-medium text-gray-200">Minutes</span>
+  </div>
+  <div className="countdown-item flex flex-col items-center">
+    <span
+      className="text-4xl font-bold text-white"
+    >
+      {timeRemaining.seconds}
+    </span>
+    <span className="text-sm font-medium text-gray-200">Seconds</span>
+  </div>
+</div>
+
     </div>
   );
 };
