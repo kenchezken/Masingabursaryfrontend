@@ -186,7 +186,51 @@ const Tertiary = () => {
   marginTop: '30px'
 }}>
       {/* Stepper */}
-      <div className="flex items-center space-x-14 mb-8">
+      <div className="container mx-auto px-4">
+  <div className="flex flex-wrap items-center justify-center space-x-4 md:space-x-14 mb-8">
+    <div
+      className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full ${
+        currentStep >= 1 ? "bg-blue-600 text-white" : "bg-gray-300"
+      }`}
+    >
+      <FontAwesomeIcon icon={faUser} className="text-sm md:text-base" />
+    </div>
+    <div className="h-0.5 w-6 md:w-12 bg-gray-300"></div>
+    <div
+      className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full ${
+        currentStep >= 2 ? "bg-blue-600 text-white" : "bg-gray-300"
+      }`}
+    >
+      <FontAwesomeIcon icon={faMap} className="text-sm md:text-base" />
+    </div>
+    <div className="h-0.5 w-6 md:w-12 bg-gray-300"></div>
+    <div
+      className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full ${
+        currentStep >= 3 ? "bg-blue-600 text-white" : "bg-gray-300"
+      }`}
+    >
+      <FontAwesomeIcon icon={faUniversity} className="text-sm md:text-base" />
+    </div>
+    <div className="h-0.5 w-6 md:w-12 bg-gray-300"></div>
+    <div
+      className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full ${
+        currentStep >= 4 ? "bg-blue-600 text-white" : "bg-gray-300"
+      }`}
+    >
+      <FontAwesomeIcon icon={faUser} className="text-sm md:text-base" />
+    </div>
+    <div className="h-0.5 w-6 md:w-12 bg-gray-300"></div>
+    <div
+      className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full ${
+        currentStep >= 5 ? "bg-blue-600 text-white" : "bg-green-300"
+      }`}
+    >
+      st
+    </div>
+  </div>
+</div>
+
+      {/* <div className="flex flex-wrap items-center justify-center space-x-4 md:space-x-2 mb-8">
         <div
           className={`w-8 h-8 flex items-center justify-center rounded-full ${
             currentStep >= 1 ? "bg-blue-600 text-white" : "bg-gray-300"
@@ -228,7 +272,7 @@ const Tertiary = () => {
           5
         </div>
 
-      </div>
+      </div> */}
 
       {/* Form Steps */}
       <div className="bg-white p-6 rounded-lg shadow-md w-96">
@@ -236,6 +280,9 @@ const Tertiary = () => {
         {currentStep === 1 && (
   <div className="space-y-4">
     <h2 className="text-xl font-semibold text-gray-800">Personal Details</h2>
+    <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Firstname
+  </label>
     <input
       type="text"
       placeholder="Firstname"
@@ -246,6 +293,9 @@ const Tertiary = () => {
    }}
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Middlename
+  </label>
         <input
       type="text"
       placeholder="Middlename"
@@ -256,6 +306,9 @@ const Tertiary = () => {
    }}
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Lastname
+  </label>
         <input
       type="text"
       placeholder="Lastname"
@@ -266,6 +319,9 @@ const Tertiary = () => {
    }}
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Gender
+  </label>
      
                   <select class="custom-select" style={{width: '100%'}}
                   value={Gender}
@@ -277,7 +333,9 @@ const Tertiary = () => {
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Disability
+  </label> 
             <select class="custom-select" style={{width: '100%'}}
             value={Disability}
             onChange={(e) => setDisability(e.target.value)} >
@@ -285,6 +343,9 @@ const Tertiary = () => {
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             </select>
+            <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Nationalid
+  </label>
         <input
       type="text"
       placeholder="National ID/Birth Certificate No"
@@ -327,6 +388,9 @@ const Tertiary = () => {
            
             </div>
           )}
+           <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Phonenumber
+  </label>
 
         <input
       type="text"
@@ -335,6 +399,9 @@ const Tertiary = () => {
       onChange={(e) => setPhonenumber(e.target.value)}
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    GuardianNo
+  </label>
         <input
       type="text"
       placeholder="Guardians/Parents Mobile No"
@@ -342,6 +409,9 @@ const Tertiary = () => {
       onChange={(e) => setGuardiansNo(e.target.value)}
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Guardianid
+  </label>
         <input
       type="text"
       placeholder="Guardians/Parents id"
@@ -361,6 +431,9 @@ const Tertiary = () => {
         {currentStep === 2 && (
          <div className="space-y-4">
          <h2 className="text-xl font-semibold text-gray-800">Residence Details</h2>
+         <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Ward
+  </label>
          <select class="custom-select" style={{width: '100%'}}
          value={Ward}
          onChange={(e) => setWard(e.target.value)}>
@@ -371,7 +444,9 @@ const Tertiary = () => {
                  <option value="KIVAA<">Kivaa ward</option>
                  <option value="MUTHESYA">Muthesya ward</option>
                  </select>
-     
+                 <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Location
+  </label>
            <input
            type="text"
            placeholder="Location"
@@ -379,6 +454,9 @@ const Tertiary = () => {
            onChange={(e) => setLocation(e.target.value)}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Sub-location
+  </label>
              <input
            type="text"
            placeholder="Sub.location"
@@ -386,6 +464,10 @@ const Tertiary = () => {
            onChange={(e) => setSublocation(e.target.value)}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Village
+
+  </label>
        
          <input
            type="text"
@@ -394,6 +476,9 @@ const Tertiary = () => {
            onChange={(e) => setVillage(e.target.value)}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Chiefsname
+  </label>
              <input
            type="text"
            placeholder="Chief's Name"
@@ -404,6 +489,9 @@ const Tertiary = () => {
         }}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+           <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Chiefphonenumber
+  </label>
              <input
            type="text"
            placeholder="Chiefs Phone.No"
@@ -414,6 +502,9 @@ const Tertiary = () => {
         }}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Assistantchiefname
+  </label>
              <input
            type="text"
            placeholder="Assistant Chief Name"
@@ -424,6 +515,9 @@ const Tertiary = () => {
         }}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Assistantchiefno
+  </label>
              <input
            type="text"
            placeholder="Assistant Chief Phone No"
@@ -454,6 +548,9 @@ const Tertiary = () => {
          {currentStep === 3 && (
           <div className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-800">Institution Details</h2>
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    University
+  </label>
           <select className="custom-select" style={{ width: '100%' }}
           value={University}
           onChange={(e) => setUniversity(e.target.value)} >
@@ -525,7 +622,9 @@ const Tertiary = () => {
               <option value="Scott Christian University">Scott Christian University</option>
               <option value="South Eastern Kenya University">South Eastern Kenya University</option>
           </select>
-      
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Institution
+  </label>
           <input
             type="text"
             placeholder="Institution"
@@ -533,6 +632,9 @@ const Tertiary = () => {
             onChange={(e) => setInstituition(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+           <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    AmountAppliedfor
+  </label>
           <input
             type="text"
             placeholder="Amount Applied"
@@ -542,6 +644,9 @@ const Tertiary = () => {
          }}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+           <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Admission/RegNo
+  </label>
           <input
             type="text"
             placeholder="AdmissionNo/RegNo"
@@ -549,6 +654,9 @@ const Tertiary = () => {
             onChange={(e) => setAdmno(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+     <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Level of Study
+  </label>
        <select class="custom-select" style={{width: '100%'}} 
        value={Levelofstudy}
        onChange={(e) => setLevelofstudy(e.target.value)} >
@@ -558,7 +666,9 @@ const Tertiary = () => {
                   <option value="Diploma">Diploma</option>
                   <option value="Certificate">Certificate</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Modeofstudy
+  </label>
                   <select class="custom-select" style={{width: '100%'}}
                   value={Modeofstudy}
                   onChange={(e) => setModeofstudy(e.target.value)} >
@@ -566,7 +676,9 @@ const Tertiary = () => {
                   <option value="Fulltime">Fulltime</option>
                   <option value="Partime">Partime</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Year of study
+  </label>
                   <select class="custom-select" style={{width: '100%'}}
                   value={Yearofstudy}
                   onChange={(e) => setYearofstudy(e.target.value)}>
@@ -579,7 +691,9 @@ const Tertiary = () => {
                   <option value="Year6">6</option>
                   <option value="Year7">7</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Semester
+  </label>
                   <select class="custom-select" style={{width: '100%'}}
                   value={Semester}
                   onChange={(e) => setSemester(e.target.value)}>
@@ -588,7 +702,9 @@ const Tertiary = () => {
                   <option value="2nd semester">2</option>
                   <option value="3rd semester">3</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Coarseduration
+  </label>
                   <select class="custom-select" style={{width: '100%'}} 
                   value={Coarseduration}
                   onChange={(e) => setCoarseduration(e.target.value)}>
@@ -621,6 +737,9 @@ const Tertiary = () => {
         {currentStep === 4 && (
           <div className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-800">Family</h2>
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Family
+  </label>
           <select class="custom-select" style={{width: '100%'}} 
           value={Family}
           onChange={(e) => setFamily(e.target.value)} >
@@ -630,7 +749,9 @@ const Tertiary = () => {
                   <option value="singleparent">Single Parent</option>
                   <option value="bothparentsalive">Both parents alive</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Fathersincome
+  </label>
                   <select class="custom-select" style={{width: '100%'}} 
                   value={Fathersincome}
                   onChange={(e) => setFathersincome(e.target.value)}>
@@ -640,7 +761,9 @@ const Tertiary = () => {
                   <option value="No specific source of income">No specific source of income</option>
                   <option value="Not applicable">Not applicable</option>
                   </select>
-      
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
+    Mothersincome
+  </label>
                   <select class="custom-select" style={{width: '100%'}}
                   value={Mothersincome}
                   onChange={(e) => setMothersincome(e.target.value)}>
