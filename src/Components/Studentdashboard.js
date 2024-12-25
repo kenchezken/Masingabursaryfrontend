@@ -28,7 +28,7 @@ function Studentdashboard({nationalid}){
                 
               setdetails(data[0]);
                // Assuming your API returns an array of details
-              setuploadedimg(`https://masingabursarybackend.onrender.com/bursarymanagement/${data[0].Imageurl}`)
+              setuploadedimg(`https://masingabursarybackend.onrender.com/${data[0].Imageurl}`)
               console.log(data);
             })
             .catch(error => {
