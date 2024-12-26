@@ -19,7 +19,7 @@ function AdminLogin({setnationalid}) {
     
     // TODO: Submit form data to backend
     setLoading(true); // Set loading to true on form submit
-    fetch("http://127.0.0.1:5000/bursarymanagement/loginadmin", {
+    fetch("https://masingabursarybackend.onrender.com/bursarymanagement/loginadmin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
