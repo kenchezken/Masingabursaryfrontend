@@ -36,7 +36,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, ArcElement, Title, Tool
 useEffect(() => {
   // Fetch data only if nationalid is available
     setIsLoading(true);
-    fetch(`http://127.0.0.1:5000/bursarymanagement/allapplication`)
+    fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/allapplication`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -148,7 +148,7 @@ const handleDelete = async (itemId) => {
   if (!confirmDelete) return;
 
   try {
-    const response = await axios.delete(`http://127.0.0.1:5000/bursarymanagement/${itemId}`);
+    const response = await axios.delete(`https://masingabursarybackend.onrender.com/bursarymanagement/${itemId}`);
     alert(response.data.message); // Show success message
     setapplication((prevApplications) => 
       prevApplications.filter((item) => item.id !== itemId)
