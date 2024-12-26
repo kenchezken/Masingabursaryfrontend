@@ -138,7 +138,7 @@ const Tertiary = () => {
 
     
   
-    fetch('https://masingabursarybackend.onrender.com/bursarymanagement/tertiaryapplication', {
+    fetch('https://masingabursarybackend.onrender.com/bursarymanagement/tertiaryapplicationn', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -355,18 +355,23 @@ const Tertiary = () => {
       }
       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
+
+
      <div>
-            <label
-              htmlFor="file-input"
-              className="inline-block px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-blue-700 transition duration-300"
-            >
-              Select Image
-            </label>
+      
+     <div> 
+      <label  className="block font-bold text-lg text-gray-800 mb-2" >Upload Nationalid</label>
+     <label className="block text-red-600 font-medium mb-2">
+    Kindly upload the front side of your ID or Birth Certificate before proceeding
+  </label>
+     </div>
+           
             <input
               id="file-input"
               type="file"
               onChange={handleFileChange}
-              className="hidden"
+              className="mt-2"
+             
             />
           </div>
           <button
@@ -388,6 +393,7 @@ const Tertiary = () => {
            
             </div>
           )}
+
            <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
     Phonenumber
   </label>
