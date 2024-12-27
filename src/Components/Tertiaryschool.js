@@ -138,7 +138,7 @@ const Tertiary = () => {
 
     
   
-    fetch('https://masingabursarybackend.onrender.com/bursarymanagement/tertiaryapplicationn', {
+    fetch('https://masingabursarybackend.onrender.com/bursarymanagement/tertiaryapplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -447,7 +447,7 @@ const Tertiary = () => {
                  <option value="MASINGACENTRAL">Masinga Central</option>
                  <option value="EKALAKALAIKATINI">Ekalakala/Ikatini ward</option>
                  <option value="NDITHINI">Ndithini ward</option>
-                 <option value="KIVAA<">Kivaa ward</option>
+                 <option value="KIVAA">Kivaa ward</option>
                  <option value="MUTHESYA">Muthesya ward</option>
                  </select>
                  <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
@@ -568,11 +568,11 @@ const Tertiary = () => {
               <option value="Chuka University">Chuka University</option>
               <option value="Daystar University">Daystar University</option>
               <option value="GRETSA University">Gretsa University</option>
-              <option value="Dedan Kimathi University of Technology">Dedan Kimathu University</option>
+              <option value="Dedan Kimathi University of Technology">Dedan Kimathi University of Technology</option>
               <option value="Islamic University of Kenya">Islamic University</option>
               <option value="Jaramogi Oginga Odinga University of Science and Technology">Jaramogi Oginga Odinga University of Science and Technology</option>
               <option value="Kabarak University">Kabarak University</option>
-              <option value="Karatina University">KARATINA University</option>
+              <option value="Karatina University">Karatina University</option>
               <option value="Kenya Highlands Evangelical University">Kenya Highland University</option>
               <option value="Kibabii University">Kibabii University</option>
               <option value="KCA University">KCA University</option>
@@ -580,7 +580,7 @@ const Tertiary = () => {
               <option value="Kirinyaga University">Kirinyaga University</option>
               <option value="Kiriri Women’s University of Science and Technology">Kiriri Womens University</option>
               <option value="Kisii University">Kisii University</option>
-              <option value="Alupe University">Kisii University</option>
+              <option value="Alupe University">Alupe University</option>
               <option value="Lukenya University">Lukenya University</option>
               <option value="Machakos University">Machakos University</option>    
               <option value="University of Embu">University of Embu</option>
@@ -810,11 +810,38 @@ const Tertiary = () => {
               Back
             </button>
             <button
-              className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" 
-              onClick={submitform}
-            >
-              Submit
-            </button>
+  className={`px-6 py-2 text-white rounded-lg ${
+    loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
+  }`}
+  onClick={submitform}
+  disabled={loading}
+>
+  {loading ? (
+    <svg
+      className="animate-spin h-5 w-5 mx-auto text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.964 7.964 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+  ) : (
+    'Submit'
+  )}
+</button>
+
           </div>
         </div>
         )}
