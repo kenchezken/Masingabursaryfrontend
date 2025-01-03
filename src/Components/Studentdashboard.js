@@ -17,7 +17,7 @@ function Studentdashboard({nationalid}){
     useEffect(() => {
         // Fetch data only if nationalid is available
         if (nationalid) {
-          fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/mydetails/${nationalid}`)
+          fetch(`http://127.0.0.1:5000/bursarymanagement/mydetails/${nationalid}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -39,7 +39,7 @@ function Studentdashboard({nationalid}){
       }, [nationalid]); // Fetch whenever nationalid changesThis empty dependency array ensures the effect runs once on component mount
 
        const handleUpdate = (id) => {
-          fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/Tertiaryapplication/${id}`, {
+          fetch(`http://127.0.0.1:5000/bursarymanagement/Tertiaryapplication/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -102,8 +102,8 @@ function Studentdashboard({nationalid}){
             <FontAwesomeIcon icon={faCheckCircle} /> <span>Approved</span>
           </span>
         ) : details.Approvalstatus === "Notapproved" ? (
-          <span className="flex items-center text-red-600 text-lg font-medium space-x-2">
-            <FontAwesomeIcon icon={faTimesCircle} /> <span>Not Approved</span>
+          <span className="flex items-center text-green-600 text-lg font-medium space-x-2">
+            <FontAwesomeIcon icon={faTimesCircle} /> <span>Pending Approval</span>
           </span>
         ) : (
           <span className="flex items-center text-yellow-600 text-lg font-medium space-x-2">
@@ -219,9 +219,8 @@ function Studentdashboard({nationalid}){
            
              <div>
                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">AssistantChiefname</label>
-               <input value={details.Assistantchiefname || ""
-               } 
-               onChange={(e) => handleInputChange('Assistantchiefname', e.target.value)}
+               <input value={details.AssistantChiefname || ""}    
+              onChange={(e) => handleInputChange('AssistantChiefname', e.target.value)}
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
              </div>
            
@@ -327,8 +326,8 @@ function Studentdashboard({nationalid}){
              </div>
              <div>
                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Level of study</label>
-               <input value={details.Village || ""} 
-               onChange={(e) => handleInputChange('Village', e.target.value)}
+               <input value={details.levelofstudy || ""} 
+               onChange={(e) => handleInputChange('levelofstudy', e.target.value)}
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
              </div>
              <div>
