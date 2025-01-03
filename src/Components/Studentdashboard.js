@@ -17,7 +17,7 @@ function Studentdashboard({nationalid}){
     useEffect(() => {
         // Fetch data only if nationalid is available
         if (nationalid) {
-          fetch(`http://127.0.0.1:5000/bursarymanagement/mydetails/${nationalid}`)
+          fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/mydetails/${nationalid}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -39,7 +39,7 @@ function Studentdashboard({nationalid}){
       }, [nationalid]); // Fetch whenever nationalid changesThis empty dependency array ensures the effect runs once on component mount
 
        const handleUpdate = (id) => {
-          fetch(`http://127.0.0.1:5000/bursarymanagement/Tertiaryapplication/${id}`, {
+          fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/Tertiaryapplication/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

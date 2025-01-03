@@ -24,7 +24,7 @@ const Searchstudent = () => {
   
       try {
         // Send request to the Flask backend to search for the record
-        const response = await axios.get(`http://127.0.0.1:5000/bursarymanagement/mydetails/${nationalId}`);
+        const response = await axios.get(`https://masingabursarybackend.onrender.com/bursarymanagement/mydetails/${nationalId}`);
         setRecord(response.data[0]); // Set the record if found
         Setidimage(`http://127.0.0.1:5000/${response.data[0].Imageurl}`)
         console.log(record);
@@ -48,7 +48,7 @@ const Searchstudent = () => {
         }).then(async (result) => {
           if (result.isConfirmed) {
             try {
-              const response = await fetch(`http://127.0.0.1:5000/bursarymanagement/approveBursaryapplication/${item.id}`, {
+              const response = await fetch(`https://masingabursarybackend.onrender.com/bursarymanagement/approveBursaryapplication/${item.id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
