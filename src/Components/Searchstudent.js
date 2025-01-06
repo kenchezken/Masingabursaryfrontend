@@ -26,7 +26,7 @@ const Searchstudent = () => {
         // Send request to the Flask backend to search for the record
         const response = await axios.get(`https://masingabursarybackend.onrender.com/bursarymanagement/mydetails/${nationalId}`);
         setRecord(response.data[0]); // Set the record if found
-        Setidimage(`http://127.0.0.1:5000/${response.data[0].Imageurl}`)
+        Setidimage(response.data[0].Imageurl)
         console.log(record);
         
         setError(''); // Clear previous errors
