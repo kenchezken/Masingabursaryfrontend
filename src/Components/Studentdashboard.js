@@ -186,7 +186,7 @@ function Studentdashboard({nationalid}){
            <option value="MASINGACENTRAL">Masinga Central</option>
            <option value="EKALAKALAIKATINI">Ekalakala/Ikatini ward</option>
            <option value="NDITHINI">Ndithini ward</option>
-           <option value="Kivaa ward<">Kivaa ward</option>
+           <option value="KIVAA">Kivaa ward</option>
            <option value="MUTHESYA">Muthesya ward</option>
            </select>
              </div>

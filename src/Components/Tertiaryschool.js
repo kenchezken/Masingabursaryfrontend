@@ -34,13 +34,13 @@ const Tertiary = () => {
   const[Guardianid , setGuardianid] = useState('')  
   const[Disability ,setDisability] = useState('')
   const[Ward , setWard] = useState('')
-  const[Levelofstudy , setLevelofstudy] = useState('')
+  const[levelofstudy , setlevelofstudy] = useState('')
   const[Location , setLocation] = useState('')
   const[Sublocation , setSublocation] = useState('')
   const[Village ,setVillage] = useState('') 
   const[Chiefname , setChiefname] = useState('')
   const[Chiefphonenumber , setChiefphonenumber] = useState('')
-  const [Assistantchiefname , setAssistantchiefname] = useState('')
+  const [AssistantChiefname , setAssistantChiefname] = useState('')
   const[Instituition , setInstituition] = useState('')
   const [University , setUniversity] = useState('')
   const[Amountexpecting , setAmountexpecting] = useState('')
@@ -108,13 +108,13 @@ const Tertiary = () => {
       Guardianid.trim() === '' ||
       Disability.trim() === '' ||
       Ward.trim() === '' ||
-      Levelofstudy.trim() === '' ||
+      levelofstudy.trim() === '' ||
       Location.trim() === '' ||
       Sublocation.trim() === '' ||
       Village.trim() === '' ||
       Chiefname.trim() === '' ||
       Chiefphonenumber.trim() === '' ||
-      Assistantchiefname.trim() === '' ||
+      AssistantChiefname.trim() === '' ||
       Assistantchiefno.trim() === '' ||
       Amountexpecting.trim() === '' ||
       Admno.trim() === '' ||
@@ -145,7 +145,7 @@ const Tertiary = () => {
       },
       body: JSON.stringify({
         Firstname , Middlename ,Lastname, Gender, Phonenumber, Nationalid, GuardiansNo, Guardianid, Disability,
-         Levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , Assistantchiefname, Assistantchiefno ,Instituition, Admno,Amountexpecting ,
+         levelofstudy , Ward, Location, Sublocation, Village, Chiefname , Chiefphonenumber , AssistantChiefname, Assistantchiefno ,Instituition, Admno,Amountexpecting ,
         Modeofstudy, Yearofstudy, Semester, Coarseduration, Family, Fathersincome, University ,
         Mothersincome, Approvalstatus , Imageurl
       })
@@ -509,14 +509,14 @@ const Tertiary = () => {
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
          />
           <label className="block text-gray-700 font-medium mb-2" htmlFor="firstname">
-    Assistantchiefname
+    AssistantChiefname
   </label>
              <input
            type="text"
            placeholder="Assistant Chief Name"
-           value={Assistantchiefname}
+           value={AssistantChiefname}
            onChange={(e) =>{
-             setAssistantchiefname(e.target.value)
+             setAssistantChiefname(e.target.value)
           
         }}
            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -664,8 +664,8 @@ const Tertiary = () => {
     Level of Study
   </label>
        <select class="custom-select" style={{width: '100%'}} 
-       value={Levelofstudy}
-       onChange={(e) => setLevelofstudy(e.target.value)} >
+       value={levelofstudy}
+       onChange={(e) => setlevelofstudy(e.target.value)} >
                   <option selected>Select Level of study</option>
                   <option value="Postgraduate">Postgraduate</option>
                   <option value="Undergraduate">Undergraduate</option>
