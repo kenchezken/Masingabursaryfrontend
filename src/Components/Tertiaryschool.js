@@ -362,7 +362,7 @@ const Tertiary = () => {
      <div> 
       <label  className="block font-bold text-lg text-gray-800 mb-2" >Upload Nationalid</label>
      <label className="block text-red-600 font-medium mb-2">
-    Kindly upload the front side of your ID or Birth Certificate before proceeding
+    Kindly upload the front side of your ID or Birth Certificate before proceeding ('png', 'jpg', 'jpeg', 'gif')
   </label>
      </div>
            
