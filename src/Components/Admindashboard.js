@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import {ThreeDots} from 'react-loader-spinner';
-
+import * as XLSX from 'xlsx'; // Import xlsx
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 import {
   Chart as ChartJS,
@@ -26,6 +28,9 @@ import { faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 function Admindashboard() {
   const [count, setCount] = useState(0)
+   
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 50; 
 
   const [applications, setapplication] = useState([]);
   const [error , seterror] = useState(null)
@@ -165,9 +170,53 @@ const handleDelete = async (itemId) => {
   }
 }
 
+const handleSearch = (event) => {
+  setSearchTerm(event.target.value.toLowerCase());
+};
+
+const filteredApplications = applications.filter((app) => 
+  app.Firstname?.toLowerCase().includes(searchTerm) ||
+  app.Middlename?.toLowerCase().includes(searchTerm) ||
+  app.Nationalid?.toString().includes(searchTerm) ||
+  app.Ward?.toLowerCase().includes(searchTerm) ||
+  app.Instituition?.toLowerCase().includes(searchTerm) ||
+  app.University?.toLowerCase().includes(searchTerm)
+);
+
+const paginatedRecords = filteredApplications.slice(
+  (currentPage - 1) * recordsPerPage,
+  currentPage * recordsPerPage
+);
+
+const totalPages = Math.ceil(filteredApplications.length / recordsPerPage);
+
+const handleDownloadExcel = () => {
+  // Prepare data for Excel
+  const worksheet = XLSX.utils.json_to_sheet(
+    filteredApplications.map((app) => ({
+      Fullname: `${app.Firstname} ${app.Middlename}`,
+      ID_Number: app.Nationalid,
+      Registration_Number: app.Admno,
+      Ward: app.Ward,
+      Institutition : app.University || app.Institutuition ,
+      Approval_Status: app.Approvalstatus,
+    }))
+  );
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Applications');
+
+  // Generate Excel file and trigger download
+  XLSX.writeFile(workbook, 'Applications.xlsx');
+};
 
 
-  return (
+
+
+
+
+
+
+return (
     <>
 <Addminnav/>     
 {isLoading ? (
@@ -314,98 +363,104 @@ const handleDelete = async (itemId) => {
          </div>
       </div>
 
-      <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-       
-      >
-        
-
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg"    style={{
-  width: '100%',
-  marginTop : '600px' ,
-  maxHeight: "600px",
-      overflowY: "auto",
-}}>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th>
-
-              </th>
-                <th scope="col" class="px-6 py-3">
-                    Student Fullname
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Id Number
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Registation Number
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Ward
-                </th>
-                <th scope="col" class="px-6 py-3">Approvalstatus</th>
-                
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-       {applications.map((item,index) => (
-            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
-            key= {item.id}
-            >
-              <td class="px-6 py-4">
-            {index + 1}
-                </td>
-                <td class="px-6 py-4">
-                    {item.Firstname} {item.Middlename}
-                </td>
-                <td class="px-6 py-4">
-                    {item.Nationalid}
-                </td>
-                <td class="px-6 py-4">
-                    {item.Admno}
-                </td>
-                <td class="px-6 py-4">
-                    {item.Ward}
-                </td>
-
-
-                <td className="px-6 py-4 text-center">
-      {item.Approvalstatus === 'Approved' ? (
-               <FontAwesomeIcon icon={faCheckCircle} color="green" />
-
-        
-      ) : item.Approvalstatus === 'Notapproved' ? (
-        <FontAwesomeIcon icon={faTimesCircle} color="red" />
-      ) : (
-        <FontAwesomeIcon icon={faQuestionCircle} color="gray" />
-      )}
-    </td>
-
-
-                <td class="px-6 py-4 text-right" onClick={() => handleDelete(item.id)}
-                >
-                <a>
-                <FontAwesomeIcon icon={faTrash}  color='red'   style={{
-                  cursor: 'pointer'
-                }}/> 
-                </a>
-             
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View more</a>
-                </td>
-                
-            </tr>
-
-       ))}
-        </tbody>
-    </table>
+      <div className="flex justify-between items-center mb-4">
+  <input
+    type="text"
+    placeholder="Search by name, ID, or ward..."
+    value={searchTerm}
+    onChange={handleSearch}
+    className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+  />
+  <button
+    onClick={handleDownloadExcel}
+    className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center ml-4"
+  >
+    <FontAwesomeIcon icon={faDownload} className="mr-2" />
+    Download Excel
+  </button>
 </div>
 
-      </div>
+
+<div className="relative overflow-x-auto shadow-md sm:rounded-lg" style={{
+  width: '100%',
+  maxHeight: "600px",
+  overflowY: "auto",
+}}>
+  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th>#</th>
+        <th className="px-6 py-3">Student Fullname</th>
+        <th className="px-6 py-3">Id Number</th>
+        <th className="px-6 py-3">Registration Number</th>
+        <th className="px-6 py-3">Ward</th>
+        <th className = "px-6 py-3">Instituition</th>
+        <th className="px-6 py-3">Approval Status</th>
+        <th className="px-6 py-3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {paginatedRecords.map((item, index) => (
+        <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600" key={item.id}>
+          <td className="px-6 py-4">{(currentPage - 1) * recordsPerPage + index + 1}</td>
+          <td className="px-6 py-4">{item.Firstname} {item.Middlename}</td>
+          <td className="px-6 py-4">{item.Nationalid}</td>
+          <td className="px-6 py-4">{item.Admno}</td>
+          <td className="px-6 py-4">{item.Ward}</td>
+          <td className= "px-6 py-4">{item.University|| item.Instituition}</td>
+          <td className="px-6 py-4 text-center">
+            {item.Approvalstatus === 'Approved' ? (
+              <FontAwesomeIcon icon={faCheckCircle} color="green" />
+            ) : item.Approvalstatus === 'Notapproved' ? (
+              <FontAwesomeIcon icon={faTimesCircle} color="red" />
+            ) : (
+              <FontAwesomeIcon icon={faQuestionCircle} color="gray" />
+            )}
+          </td>
+          <td className="px-6 py-4 text-right">
+            <a onClick={() => handleDelete(item.id)}>
+              <FontAwesomeIcon icon={faTrash} color="red" style={{ cursor: 'pointer' }} />
+            </a>
+          </td>
+          <td className="px-6 py-4 text-right">
+            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View more</a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <div className="flex justify-center items-center space-x-4 mt-4">
+      {/* Previous Button */}
+      <button
+        disabled={currentPage === 1}
+        onClick={() => setCurrentPage((prev) => prev - 1)}
+        className={`p-3 rounded-full border transition-all ${
+          currentPage === 1
+            ? "text-gray-400 border-gray-300 cursor-not-allowed"
+            : "text-blue-600 border-blue-400 hover:bg-blue-100"
+        }`}
+        title="Previous Page"
+      >
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+
+      {/* Next Button */}
+      <button
+        disabled={currentPage === totalPages}
+        onClick={() => setCurrentPage((prev) => prev + 1)}
+        className={`p-3 rounded-full border transition-all ${
+          currentPage === totalPages
+            ? "text-gray-400 border-gray-300 cursor-not-allowed"
+            : "text-blue-600 border-blue-400 hover:bg-blue-100"
+        }`}
+        title="Next Page"
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    </div>
+
+</div>
+
 
 
 
