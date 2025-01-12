@@ -138,7 +138,7 @@ const Tertiary = () => {
 
     
   
-    fetch('https://masingabursarybackend.onrender.com/bursarymanagement/tertiaryapplication', {
+    fetch('https://masingabursarybckend.onrender.com/bursarymanagement/tertiaryapplication', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
